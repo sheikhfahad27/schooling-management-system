@@ -1,15 +1,49 @@
-
 /* =========================================================
-   EDUMANAGE - ACADEMY MANAGEMENT SYSTEM
-   Complete Working JavaScript
+   EDUMANAGE PRO
+   COMPLETE WORKING JAVASCRIPT
 ========================================================= */
 
 
 /* =========================================================
-   STUDENTS DATA
+   STORAGE HELPERS
 ========================================================= */
 
-let students = JSON.parse(localStorage.getItem("edu_students")) || [
+function getStorage(key, fallback) {
+
+    try {
+
+        const data = localStorage.getItem(key);
+
+        return data
+            ? JSON.parse(data)
+            : fallback;
+
+    } catch (error) {
+
+        console.error(error);
+
+        return fallback;
+
+    }
+
+}
+
+
+function saveStorage(key, data) {
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* =========================================================
+   DEFAULT STUDENTS
+========================================================= */
+
+let students = getStorage("edu_students", [
 
     {
         name: "Ayaan Khan",
@@ -17,7 +51,9 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 10",
         phone: "0301-4587210",
         fee: "Paid",
-        status: "Active"
+        feeAmount: 3000,
+        status: "Active",
+        joined: "Sep 22, 2026"
     },
 
     {
@@ -26,7 +62,9 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 9",
         phone: "0312-7784512",
         fee: "Paid",
-        status: "Active"
+        feeAmount: 3000,
+        status: "Active",
+        joined: "Sep 21, 2026"
     },
 
     {
@@ -35,7 +73,9 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 11",
         phone: "0333-1826401",
         fee: "Pending",
-        status: "Active"
+        feeAmount: 3000,
+        status: "Active",
+        joined: "Sep 20, 2026"
     },
 
     {
@@ -44,7 +84,9 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 10",
         phone: "0300-6642319",
         fee: "Paid",
-        status: "Active"
+        feeAmount: 2500,
+        status: "Active",
+        joined: "Sep 19, 2026"
     },
 
     {
@@ -53,7 +95,9 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 9",
         phone: "0345-9012788",
         fee: "Pending",
-        status: "Active"
+        feeAmount: 3000,
+        status: "Active",
+        joined: "Sep 18, 2026"
     },
 
     {
@@ -62,7 +106,9 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 12",
         phone: "0321-5538124",
         fee: "Paid",
-        status: "Active"
+        feeAmount: 3500,
+        status: "Active",
+        joined: "Sep 17, 2026"
     },
 
     {
@@ -71,7 +117,9 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 10",
         phone: "0308-4412876",
         fee: "Paid",
-        status: "Active"
+        feeAmount: 3000,
+        status: "Active",
+        joined: "Sep 16, 2026"
     },
 
     {
@@ -80,23 +128,26 @@ let students = JSON.parse(localStorage.getItem("edu_students")) || [
         class: "Grade 11",
         phone: "0315-7721038",
         fee: "Pending",
-        status: "Active"
+        feeAmount: 3000,
+        status: "Active",
+        joined: "Sep 15, 2026"
     }
 
-];
+]);
 
 
 /* =========================================================
    TEACHERS
 ========================================================= */
 
-const teachers = [
+let teachers = getStorage("edu_teachers", [
 
     {
         name: "Sarah Ahmed",
         subject: "Mathematics",
         exp: "6 Years",
         classes: "Grade 9–12",
+        email: "sarah.ahmed@academy.com",
         initials: "SA"
     },
 
@@ -105,6 +156,7 @@ const teachers = [
         subject: "English",
         exp: "4 Years",
         classes: "Grade 8–10",
+        email: "usman.tariq@academy.com",
         initials: "UT"
     },
 
@@ -113,6 +165,7 @@ const teachers = [
         subject: "Computer Science",
         exp: "5 Years",
         classes: "Grade 9–12",
+        email: "areeba.khan@academy.com",
         initials: "AK"
     },
 
@@ -121,6 +174,7 @@ const teachers = [
         subject: "Physics",
         exp: "7 Years",
         classes: "Grade 10–12",
+        email: "hamza.malik@academy.com",
         initials: "HM"
     },
 
@@ -129,6 +183,7 @@ const teachers = [
         subject: "Chemistry",
         exp: "3 Years",
         classes: "Grade 10–12",
+        email: "sana.noor@academy.com",
         initials: "SN"
     },
 
@@ -137,59 +192,114 @@ const teachers = [
         subject: "Biology",
         exp: "5 Years",
         classes: "Grade 9–12",
+        email: "bilal.ahmed@academy.com",
         initials: "BA"
     }
 
-];
+]);
 
 
 /* =========================================================
    RESULTS
 ========================================================= */
 
-const results = [
+let results = getStorage("edu_results", [
 
     {
         name: "Ayaan Khan",
+        studentId: "ST-1024",
         class: "Grade 10",
         math: 92,
         english: 88,
         science: 90,
-        percentage: "90.0%",
+        percentage: 90,
         grade: "A+"
     },
 
     {
         name: "Hania Ahmed",
+        studentId: "ST-1023",
         class: "Grade 9",
         math: 86,
         english: 91,
         science: 84,
-        percentage: "87.0%",
+        percentage: 87,
         grade: "A"
     },
 
     {
         name: "Eman Fatima",
+        studentId: "ST-1021",
         class: "Grade 10",
         math: 82,
         english: 89,
         science: 87,
-        percentage: "86.0%",
+        percentage: 86,
         grade: "A"
     },
 
     {
         name: "Maham Noor",
+        studentId: "ST-1019",
         class: "Grade 12",
         math: 95,
         english: 93,
         science: 91,
-        percentage: "93.0%",
+        percentage: 93,
         grade: "A+"
     }
 
-];
+]);
+
+
+/* =========================================================
+   ATTENDANCE
+========================================================= */
+
+let attendanceState =
+    getStorage("edu_attendance", {});
+
+
+/* =========================================================
+   PAYMENTS
+========================================================= */
+
+let payments =
+    getStorage("edu_payments", []);
+
+
+/* =========================================================
+   NOTICES
+========================================================= */
+
+let notices =
+    getStorage("edu_notices", [
+
+        {
+            id: Date.now() - 3,
+            title: "Monthly Test Schedule",
+            category: "Exam",
+            message: "Monthly tests will begin from October 1. Students are requested to prepare according to the announced schedule.",
+            date: "Sep 22, 2026"
+        },
+
+        {
+            id: Date.now() - 2,
+            title: "Fee Submission Reminder",
+            category: "Fee",
+            message: "Please ensure that monthly academy fees are submitted before the due date.",
+            date: "Sep 21, 2026"
+        },
+
+        {
+            id: Date.now() - 1,
+            title: "Parent Teacher Meeting",
+            category: "Important",
+            message: "Parent teacher meeting will be held this Saturday from 10:00 AM to 1:00 PM.",
+            date: "Sep 20, 2026"
+        }
+
+    ]);
 
 
 /* =========================================================
@@ -247,7 +357,7 @@ const pageData = {
 
 function getInitials(name) {
 
-    return name
+    return String(name)
         .trim()
         .split(/\s+/)
         .map(word => word.charAt(0))
@@ -259,15 +369,66 @@ function getInitials(name) {
 
 
 /* =========================================================
-   SAVE STUDENTS
+   STUDENT ID
+========================================================= */
+
+function generateStudentId() {
+
+    const numbers = students
+        .map(student => {
+            const number = parseInt(
+                String(student.id).replace("ST-", "")
+            );
+
+            return isNaN(number) ? 0 : number;
+        });
+
+    const highest =
+        numbers.length
+            ? Math.max(...numbers)
+            : 1000;
+
+    return `ST-${highest + 1}`;
+
+}
+
+
+/* =========================================================
+   SAVE ALL
 ========================================================= */
 
 function saveStudents() {
+    saveStorage("edu_students", students);
+}
 
-    localStorage.setItem(
-        "edu_students",
-        JSON.stringify(students)
-    );
+function saveTeachers() {
+    saveStorage("edu_teachers", teachers);
+}
+
+function saveResults() {
+    saveStorage("edu_results", results);
+}
+
+function saveNotices() {
+    saveStorage("edu_notices", notices);
+}
+
+function saveAttendanceData() {
+    saveStorage("edu_attendance", attendanceState);
+}
+
+function savePayments() {
+    saveStorage("edu_payments", payments);
+}
+
+
+/* =========================================================
+   FORMAT MONEY
+========================================================= */
+
+function money(amount) {
+
+    return `₨ ${Number(amount || 0).toLocaleString()}`;
 
 }
 
@@ -292,13 +453,9 @@ function studentRow(student) {
 
                     <div>
 
-                        <strong>
-                            ${student.name}
-                        </strong>
+                        <strong>${escapeHTML(student.name)}</strong>
 
-                        <small>
-                            ${student.id}
-                        </small>
+                        <small>${student.id}</small>
 
                     </div>
 
@@ -306,32 +463,22 @@ function studentRow(student) {
 
             </td>
 
-            <td>
-                ${student.id}
-            </td>
+            <td>${student.id}</td>
+
+            <td>${escapeHTML(student.class)}</td>
+
+            <td>${escapeHTML(student.phone || "—")}</td>
 
             <td>
-                ${student.class}
-            </td>
-
-            <td>
-                ${student.phone}
-            </td>
-
-            <td>
-
                 <span class="badge ${student.fee.toLowerCase()}">
                     ${student.fee}
                 </span>
-
             </td>
 
             <td>
-
                 <span class="badge active">
                     ${student.status}
                 </span>
-
             </td>
 
             <td>
@@ -344,9 +491,8 @@ function studentRow(student) {
                 </button>
 
                 <button
-                    class="link-btn"
+                    class="link-btn danger"
                     onclick="deleteStudent('${student.id}')"
-                    style="color:#d96849;margin-left:8px;"
                 >
                     Delete
                 </button>
@@ -379,8 +525,11 @@ function renderStudents(list = students) {
 
             table.innerHTML = `
                 <tr>
-                    <td colspan="7" style="text-align:center;padding:30px;">
-                        No students found.
+                    <td colspan="7">
+                        <div class="empty-state">
+                            <strong>No students found</strong>
+                            Try changing your search or filter.
+                        </div>
                     </td>
                 </tr>
             `;
@@ -397,68 +546,54 @@ function renderStudents(list = students) {
 
     if (recent) {
 
-        recent.innerHTML = students
-            .slice(0, 5)
-            .map((student, index) => {
+        recent.innerHTML =
+            students.slice(0, 5).map(student => `
 
-                return `
+                <tr>
 
-                    <tr>
+                    <td>
 
-                        <td>
+                        <div class="student">
 
-                            <div class="student">
+                            <div class="student-avatar">
+                                ${getInitials(student.name)}
+                            </div>
 
-                                <div class="student-avatar">
-                                    ${getInitials(student.name)}
-                                </div>
+                            <div>
 
-                                <div>
+                                <strong>
+                                    ${escapeHTML(student.name)}
+                                </strong>
 
-                                    <strong>
-                                        ${student.name}
-                                    </strong>
-
-                                    <small>
-                                        ${student.id}
-                                    </small>
-
-                                </div>
+                                <small>
+                                    ${student.id}
+                                </small>
 
                             </div>
 
-                        </td>
+                        </div>
 
-                        <td>
-                            ${student.class}
-                        </td>
+                    </td>
 
-                        <td>
-                            Sep ${Math.max(1, 22 - index)}
-                        </td>
+                    <td>${student.class}</td>
 
-                        <td>
+                    <td>${student.joined || "Recently"}</td>
 
-                            <span class="badge ${student.fee.toLowerCase()}">
-                                ${student.fee}
-                            </span>
+                    <td>
+                        <span class="badge ${student.fee.toLowerCase()}">
+                            ${student.fee}
+                        </span>
+                    </td>
 
-                        </td>
+                    <td>
+                        <span class="badge active">
+                            ${student.status}
+                        </span>
+                    </td>
 
-                        <td>
+                </tr>
 
-                            <span class="badge active">
-                                ${student.status}
-                            </span>
-
-                        </td>
-
-                    </tr>
-
-                `;
-
-            })
-            .join("");
+            `).join("");
 
     }
 
@@ -474,46 +609,22 @@ function renderStudents(list = students) {
 
 function updateDashboardStats() {
 
-    const statCards =
-        document.querySelectorAll(".stat-card");
+    const totalStudents =
+        document.getElementById("totalStudents");
 
-    if (!statCards.length) return;
+    const totalTeachers =
+        document.getElementById("totalTeachers");
 
+    if (totalStudents)
+        totalStudents.textContent = students.length;
 
-    const studentCard =
-        [...statCards].find(card =>
-            card.innerText.includes("Total Students")
-        );
-
-
-    if (studentCard) {
-
-        const number =
-            studentCard.querySelector("strong");
-
-        if (number) {
-            number.textContent = students.length;
-        }
-
-    }
+    if (totalTeachers)
+        totalTeachers.textContent = teachers.length;
 
 
-    const teacherCard =
-        [...statCards].find(card =>
-            card.innerText.includes("Total Teachers")
-        );
+    updateAttendanceCount();
 
-
-    if (teacherCard) {
-
-        const number =
-            teacherCard.querySelector("strong");
-
-        if (number) {
-            number.textContent = teachers.length;
-        }
-
-    }
+    updateFeeStats();
 
 }
 
@@ -530,9 +641,85 @@ function viewStudent(id) {
     if (!student) return;
 
 
-    showToast(
-        `${student.name} • ${student.class} • ${student.phone}`
-    );
+    const modal =
+        document.getElementById("viewStudentModal");
+
+    const details =
+        document.getElementById("studentDetails");
+
+
+    details.innerHTML = `
+
+        <div class="student-detail">
+
+            <div class="student-detail-top">
+
+                <div class="student-detail-avatar">
+                    ${getInitials(student.name)}
+                </div>
+
+                <div>
+
+                    <h3>${escapeHTML(student.name)}</h3>
+
+                    <p>
+                        ${student.id} • ${student.class}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-grid">
+
+                <div class="detail-item">
+                    <span>Student ID</span>
+                    <strong>${student.id}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Class</span>
+                    <strong>${student.class}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Phone</span>
+                    <strong>${student.phone}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Fee Status</span>
+                    <strong>${student.fee}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Monthly Fee</span>
+                    <strong>${money(student.feeAmount)}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Status</span>
+                    <strong>${student.status}</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    modal.classList.add("show");
+
+}
+
+
+function closeViewStudent() {
+
+    document
+        .getElementById("viewStudentModal")
+        .classList.remove("show");
 
 }
 
@@ -549,26 +736,29 @@ function deleteStudent(id) {
     if (!student) return;
 
 
-    const confirmDelete =
-        confirm(
-            `Delete ${student.name} from students?`
-        );
-
-
-    if (!confirmDelete) return;
+    if (!confirm(
+        `Delete ${student.name} from students?`
+    )) return;
 
 
     students =
         students.filter(item => item.id !== id);
 
 
+    delete attendanceState[id];
+
+    results =
+        results.filter(item => item.studentId !== id);
+
+
     saveStudents();
+    saveAttendanceData();
+    saveResults();
 
     renderStudents();
-
     renderAttendance();
-
     renderFees();
+    renderResults();
 
     showToast("Student deleted successfully");
 
@@ -587,88 +777,163 @@ function renderTeachers() {
     if (!grid) return;
 
 
+    if (!teachers.length) {
+
+        grid.innerHTML = `
+            <div class="panel">
+                <div class="empty-state">
+                    <strong>No teachers added</strong>
+                    Add your first teacher.
+                </div>
+            </div>
+        `;
+
+        return;
+
+    }
+
+
     grid.innerHTML =
-        teachers.map(teacher => {
+        teachers.map((teacher, index) => `
 
-            return `
+            <article class="teacher-card">
 
-                <article class="teacher-card">
+                <div class="teacher-top">
 
-                    <div class="teacher-top">
+                    <div class="teacher-avatar">
+                        ${getInitials(teacher.name)}
+                    </div>
 
-                        <div class="teacher-avatar">
-                            ${teacher.initials}
-                        </div>
+                    <div>
 
-                        <div>
+                        <h3>
+                            ${escapeHTML(teacher.name)}
+                        </h3>
 
-                            <h3>
-                                ${teacher.name}
-                            </h3>
-
-                            <p>
-                                ${teacher.subject}
-                            </p>
-
-                        </div>
+                        <p>
+                            ${escapeHTML(teacher.subject)}
+                        </p>
 
                     </div>
 
-                    <div class="teacher-info">
+                </div>
 
-                        <span>
-                            ◷ Experience:
-                            <b>${teacher.exp}</b>
-                        </span>
+                <div class="teacher-info">
 
-                        <span>
-                            ▦ Classes:
-                            <b>${teacher.classes}</b>
-                        </span>
+                    <span>
+                        ◷ Experience:
+                        <b>${escapeHTML(teacher.exp || "—")}</b>
+                    </span>
 
-                        <span>
-                            ✉
-                            ${teacher.name
-                                .toLowerCase()
-                                .replaceAll(" ", ".")
-                            }@academy.com
-                        </span>
+                    <span>
+                        ▦ Classes:
+                        <b>${escapeHTML(teacher.classes || "—")}</b>
+                    </span>
+
+                    <span>
+                        ✉ ${escapeHTML(teacher.email || "—")}
+                    </span>
+
+                    <div>
+
+                        <button
+                            class="link-btn danger"
+                            onclick="deleteTeacher(${index})"
+                        >
+                            Delete Teacher
+                        </button>
 
                     </div>
 
-                </article>
+                </div>
 
-            `;
+            </article>
 
-        }).join("");
+        `).join("");
 
 }
 
 
 /* =========================================================
-   ADD TEACHER
+   TEACHER MODAL
 ========================================================= */
 
-function addTeacher() {
+function openTeacherModal() {
 
-    showToast(
-        "Teacher module is ready for backend integration"
-    );
+    document
+        .getElementById("teacherModal")
+        .classList.add("show");
+
+}
+
+
+function closeTeacherModal() {
+
+    document
+        .getElementById("teacherModal")
+        .classList.remove("show");
+
+}
+
+
+function deleteTeacher(index) {
+
+    const teacher = teachers[index];
+
+    if (!teacher) return;
+
+
+    if (!confirm(
+        `Delete ${teacher.name}?`
+    )) return;
+
+
+    teachers.splice(index, 1);
+
+    saveTeachers();
+
+    renderTeachers();
+
+    updateDashboardStats();
+
+    showToast("Teacher deleted successfully");
 
 }
 
 
 /* =========================================================
-   ATTENDANCE DATA
+   ATTENDANCE
 ========================================================= */
 
-let attendanceState =
-    JSON.parse(localStorage.getItem("edu_attendance")) || {};
+function attendanceKey(date, studentId) {
+
+    return `${date}_${studentId}`;
+
+}
 
 
-/* =========================================================
-   RENDER ATTENDANCE
-========================================================= */
+function getAttendanceStatus(student, index) {
+
+    const date =
+        document.getElementById("attendanceDate")?.value ||
+        getToday();
+
+
+    const key =
+        attendanceKey(date, student.id);
+
+
+    if (attendanceState[key] !== undefined) {
+
+        return attendanceState[key];
+
+    }
+
+
+    return index !== 3 && index !== 7;
+
+}
+
 
 function renderAttendance() {
 
@@ -678,191 +943,43 @@ function renderAttendance() {
     if (!table) return;
 
 
-    table.innerHTML =
-        students.slice(0, 24)
-            .map((student, index) => {
-
-                const saved =
-                    attendanceState[student.id];
-
-                const isPresent =
-                    saved !== undefined
-                        ? saved
-                        : index !== 3 && index !== 7;
-
-
-                return `
-
-                    <tr>
-
-                        <td>
-
-                            <div class="student">
-
-                                <div class="student-avatar">
-                                    ${getInitials(student.name)}
-                                </div>
-
-                                <strong>
-                                    ${student.name}
-                                </strong>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            ${student.id}
-                        </td>
-
-                        <td>
-
-                            <span class="badge ${isPresent ? "present" : "absent"}">
-
-                                ${isPresent ? "Present" : "Absent"}
-
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            <button
-                                class="link-btn"
-                                onclick="toggleAttendance('${student.id}')"
-                            >
-
-                                ${
-                                    isPresent
-                                        ? "Mark Absent"
-                                        : "Mark Present"
-                                }
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                `;
-
-            })
-            .join("");
-
-
-    updateAttendanceCount();
-
-}
-
-
-/* =========================================================
-   TOGGLE ATTENDANCE
-========================================================= */
-
-function toggleAttendance(id) {
-
-    const current =
-        attendanceState[id];
-
-    attendanceState[id] =
-        current === undefined
-            ? false
-            : !current;
-
-
-    localStorage.setItem(
-        "edu_attendance",
-        JSON.stringify(attendanceState)
-    );
-
-
-    renderAttendance();
-
-    showToast("Attendance updated");
-
-}
-
-
-/* =========================================================
-   ATTENDANCE COUNT
-========================================================= */
-
-function updateAttendanceCount() {
-
-    const count =
-        document.querySelector(".attendance-count");
-
-    if (!count) return;
+    const classFilter =
+        document.getElementById("attendanceClass")?.value || "";
 
 
     const list =
-        students.slice(0, 24);
+        students.filter(student => {
+
+            return !classFilter ||
+                student.class === classFilter;
+
+        });
 
 
-    let present = 0;
+    if (!list.length) {
 
+        table.innerHTML = `
+            <tr>
+                <td colspan="4">
+                    <div class="empty-state">
+                        <strong>No students found</strong>
+                    </div>
+                </td>
+            </tr>
+        `;
 
-    list.forEach((student, index) => {
+        updateAttendanceCount();
 
-        const saved =
-            attendanceState[student.id];
+        return;
 
-        const isPresent =
-            saved !== undefined
-                ? saved
-                : index !== 3 && index !== 7;
-
-
-        if (isPresent) {
-            present++;
-        }
-
-    });
-
-
-    count.innerHTML =
-        `Present: <b>${present}</b> / ${list.length}`;
-
-}
-
-
-/* =========================================================
-   SAVE ATTENDANCE
-========================================================= */
-
-function saveAttendance() {
-
-    localStorage.setItem(
-        "edu_attendance",
-        JSON.stringify(attendanceState)
-    );
-
-    showToast(
-        "Attendance saved successfully"
-    );
-
-}
-
-
-/* =========================================================
-   FEES
-========================================================= */
-
-function renderFees() {
-
-    const table =
-        document.getElementById("feesTable");
-
-    if (!table) return;
+    }
 
 
     table.innerHTML =
-        students.map((student, index) => {
+        list.map((student, index) => {
 
-            const amount =
-                index % 3 === 0
-                    ? 2500
-                    : 3000;
+            const present =
+                getAttendanceStatus(student, index);
 
 
             return `
@@ -878,24 +995,284 @@ function renderFees() {
                             </div>
 
                             <strong>
-                                ${student.name}
+                                ${escapeHTML(student.name)}
                             </strong>
 
                         </div>
 
                     </td>
 
+                    <td>${student.id}</td>
+
                     <td>
-                        ${student.class}
+
+                        <span class="badge ${
+                            present
+                                ? "present"
+                                : "absent"
+                        }">
+
+                            ${
+                                present
+                                    ? "Present"
+                                    : "Absent"
+                            }
+
+                        </span>
+
                     </td>
 
                     <td>
-                        ₨ ${amount.toLocaleString()}
+
+                        <button
+                            class="link-btn"
+                            onclick="toggleAttendance('${student.id}')"
+                        >
+
+                            ${
+                                present
+                                    ? "Mark Absent"
+                                    : "Mark Present"
+                            }
+
+                        </button>
+
                     </td>
 
+                </tr>
+
+            `;
+
+        }).join("");
+
+
+    updateAttendanceCount();
+
+}
+
+
+function toggleAttendance(id) {
+
+    const student =
+        students.find(item => item.id === id);
+
+    if (!student) return;
+
+
+    const date =
+        document.getElementById("attendanceDate")?.value ||
+        getToday();
+
+
+    const key =
+        attendanceKey(date, id);
+
+
+    const current =
+        getAttendanceStatus(
+            student,
+            students.indexOf(student)
+        );
+
+
+    attendanceState[key] = !current;
+
+    saveAttendanceData();
+
+    renderAttendance();
+
+    updateDashboardStats();
+
+}
+
+
+function updateAttendanceCount() {
+
+    const count =
+        document.querySelector(".attendance-count");
+
+    if (!count) return;
+
+
+    const classFilter =
+        document.getElementById("attendanceClass")?.value || "";
+
+
+    const list =
+        students.filter(student => {
+
+            return !classFilter ||
+                student.class === classFilter;
+
+        });
+
+
+    let present = 0;
+
+
+    list.forEach((student, index) => {
+
+        if (getAttendanceStatus(student, index)) {
+            present++;
+        }
+
+    });
+
+
+    const percentage =
+        list.length
+            ? Math.round((present / list.length) * 100)
+            : 0;
+
+
+    count.innerHTML =
+        `Present: <b>${present}</b> / ${list.length}`;
+
+
+    const percentageElement =
+        document.getElementById(
+            "attendancePercentage"
+        );
+
+
+    if (percentageElement) {
+
+        percentageElement.textContent =
+            `${percentage}%`;
+
+    }
+
+}
+
+
+function saveAttendance() {
+
+    saveAttendanceData();
+
+    showToast(
+        "Attendance saved successfully"
+    );
+
+}
+
+
+/* =========================================================
+   FEES
+========================================================= */
+
+function getFeeAmount(student) {
+
+    return Number(
+        student.feeAmount || 3000
+    );
+
+}
+
+
+/* =========================================================
+   FEES
+========================================================= */
+
+function getFeeAmount(student) {
+
+    return Number(
+        student.feeAmount || 3000
+    );
+
+}
+
+
+function renderFees() {
+
+    const table =
+        document.getElementById("feesTable");
+
+    if (!table) return;
+
+
+    if (!students.length) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="6">
+                    <div class="empty-state">
+                        <strong>No students found</strong>
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        updateFeeStats();
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        students.map((student, index) => {
+
+            const amount =
+                getFeeAmount(student);
+
+            const payment =
+                [...payments]
+                    .reverse()
+                    .find(
+                        item =>
+                            item.studentId === student.id
+                    );
+
+
+            const paymentDate =
+                payment?.date ||
+                student.joined ||
+                "—";
+
+
+            return `
+
+                <tr>
+
                     <td>
-                        Sep ${5 + index}
+
+                        <div class="student">
+
+                            <div class="student-avatar">
+                                ${getInitials(student.name)}
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    ${escapeHTML(student.name)}
+                                </strong>
+
+                                <small>
+                                    ${student.id}
+                                </small>
+
+                            </div>
+
+                        </div>
+
                     </td>
+
+
+                    <td>
+                        ${escapeHTML(student.class)}
+                    </td>
+
+
+                    <td>
+                        ${money(amount)}
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(paymentDate)}
+                    </td>
+
 
                     <td>
 
@@ -905,6 +1282,7 @@ function renderFees() {
 
                     </td>
 
+
                     <td>
 
                         ${
@@ -912,25 +1290,35 @@ function renderFees() {
 
                                 ?
 
-                                `
+                            `
                                 <button
                                     class="link-btn"
                                     onclick="markFeePaid('${student.id}')"
+                                    style="color:#16a34a;"
                                 >
-                                    Mark Paid
+                                    ✓ Mark Paid
                                 </button>
-                                `
+                            `
 
                                 :
 
-                                `
+                            `
+                                <button
+                                    class="link-btn"
+                                    onclick="markFeeUnpaid('${student.id}')"
+                                    style="color:#dc2626;"
+                                >
+                                    ✕ Mark Unpaid
+                                </button>
+
                                 <button
                                     class="link-btn"
                                     onclick="generateReceipt('${student.id}')"
+                                    style="margin-left:10px;"
                                 >
                                     Receipt
                                 </button>
-                                `
+                            `
                         }
 
                     </td>
@@ -940,6 +1328,120 @@ function renderFees() {
             `;
 
         }).join("");
+
+
+    updateFeeStats();
+
+}
+
+
+
+
+
+function updateFeeStats() {
+
+    let collected = 0;
+
+    let pending = 0;
+
+
+    students.forEach(student => {
+
+        const amount =
+            getFeeAmount(student);
+
+        if (student.fee === "Paid") {
+
+            collected += amount;
+
+        } else {
+
+            pending += amount;
+
+        }
+
+    });
+
+
+    const total =
+        collected + pending;
+
+
+    const percentage =
+        total
+            ? Math.round((collected / total) * 100)
+            : 0;
+
+
+    const elements = {
+
+        collected:
+            document.getElementById("feeCollected"),
+
+        pageCollected:
+            document.getElementById("feesPageCollected"),
+
+        pagePending:
+            document.getElementById("feesPagePending"),
+
+        pageTotal:
+            document.getElementById("feesPageTotal"),
+
+        percentage:
+            document.getElementById("feePercentage"),
+
+        paidCount:
+            document.getElementById("paidCount"),
+
+        pendingCount:
+            document.getElementById("pendingCount"),
+
+        total:
+            document.getElementById("feeTotal")
+
+    };
+
+
+    if (elements.collected)
+        elements.collected.textContent = money(collected);
+
+    if (elements.pageCollected)
+        elements.pageCollected.textContent = money(collected);
+
+    if (elements.pagePending)
+        elements.pagePending.textContent = money(pending);
+
+    if (elements.pageTotal)
+        elements.pageTotal.textContent = money(total);
+
+    if (elements.percentage)
+        elements.percentage.textContent = `${percentage}%`;
+
+    if (elements.paidCount)
+        elements.paidCount.textContent =
+            students.filter(s => s.fee === "Paid").length;
+
+    if (elements.pendingCount)
+        elements.pendingCount.textContent =
+            students.filter(s => s.fee === "Pending").length;
+
+    if (elements.total)
+        elements.total.textContent =
+            students.length;
+
+
+    const circle =
+        document.querySelector(".fee-circle");
+
+    if (circle) {
+
+        circle.style.background =
+            `conic-gradient(
+                var(--primary) ${percentage * 3.6}deg,
+                #eaf0f8 ${percentage * 3.6}deg
+            )`;
+
+    }
 
 }
 
@@ -956,13 +1458,50 @@ function markFeePaid(id) {
     if (!student) return;
 
 
+    if (student.fee === "Paid") {
+
+        showToast(
+            `${student.name}'s fee is already paid`
+        );
+
+        return;
+
+    }
+
+
+    const amount =
+        getFeeAmount(student);
+
+
     student.fee = "Paid";
 
+
+    payments.push({
+
+        id: Date.now(),
+
+        studentId: student.id,
+
+        studentName: student.name,
+
+        amount,
+
+        date: getToday()
+
+    });
+
+
     saveStudents();
+
+    savePayments();
+
 
     renderStudents();
 
     renderFees();
+
+    updateDashboardStats();
+
 
     showToast(
         `${student.name}'s fee marked as paid`
@@ -972,10 +1511,10 @@ function markFeePaid(id) {
 
 
 /* =========================================================
-   RECEIPT
+   MARK FEE UNPAID
 ========================================================= */
 
-function generateReceipt(id) {
+function markFeeUnpaid(id) {
 
     const student =
         students.find(item => item.id === id);
@@ -983,29 +1522,67 @@ function generateReceipt(id) {
     if (!student) return;
 
 
-    const amount = 3000;
+    if (student.fee === "Pending") {
+
+        showToast(
+            `${student.name}'s fee is already unpaid`
+        );
+
+        return;
+
+    }
+
+
+    if (!confirm(
+        `Mark ${student.name}'s fee as unpaid?`
+    )) {
+
+        return;
+
+    }
+
+
+    student.fee = "Pending";
+
+
+    saveStudents();
+
+
+    renderStudents();
+
+    renderFees();
+
+    updateDashboardStats();
 
 
     showToast(
-        `Receipt generated for ${student.name} • ₨${amount.toLocaleString()}`
+        `${student.name}'s fee marked as unpaid`
     );
 
 }
 
-
 /* =========================================================
-   RECORD PAYMENT
+   PAYMENT MODAL
 ========================================================= */
 
-function recordPayment() {
+function openPaymentModal() {
 
-    const pending =
-        students.find(
-            student => student.fee === "Pending"
-        );
+    const select =
+        document.getElementById("paymentStudent");
 
 
-    if (!pending) {
+    select.innerHTML =
+        students
+            .filter(student => student.fee === "Pending")
+            .map(student => `
+                <option value="${student.id}">
+                    ${escapeHTML(student.name)} — ${student.class}
+                </option>
+            `)
+            .join("");
+
+
+    if (!select.options.length) {
 
         showToast(
             "No pending fees found"
@@ -1016,7 +1593,173 @@ function recordPayment() {
     }
 
 
-    markFeePaid(pending.id);
+    document.getElementById("paymentAmount").value = 3000;
+
+    document.getElementById("paymentDate").value =
+        getToday();
+
+
+    document
+        .getElementById("paymentModal")
+        .classList.add("show");
+
+}
+
+
+function closePaymentModal() {
+
+    document
+        .getElementById("paymentModal")
+        .classList.remove("show");
+
+}
+
+
+function generateReceipt(id) {
+
+    const student =
+        students.find(item => item.id === id);
+
+    if (!student) return;
+
+
+    const amount =
+        getFeeAmount(student);
+
+
+    const receiptWindow =
+        window.open(
+            "",
+            "_blank",
+            "width=600,height=700"
+        );
+
+
+    if (!receiptWindow) {
+
+        showToast(
+            "Please allow popups to print receipt"
+        );
+
+        return;
+
+    }
+
+
+    receiptWindow.document.write(`
+
+        <!DOCTYPE html>
+
+        <html>
+
+        <head>
+
+            <title>Fee Receipt - ${student.name}</title>
+
+            <style>
+
+                body {
+                    font-family: Arial, sans-serif;
+                    padding: 40px;
+                    color: #172033;
+                }
+
+                .receipt {
+                    max-width: 500px;
+                    margin: auto;
+                    border: 1px solid #ddd;
+                    padding: 30px;
+                }
+
+                h1 {
+                    margin: 0 0 5px;
+                }
+
+                .muted {
+                    color: #777;
+                }
+
+                .row {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px 0;
+                    border-bottom: 1px solid #eee;
+                }
+
+                .total {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                .paid {
+                    color: green;
+                    font-weight: bold;
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <div class="receipt">
+
+                <h1>EduManage Academy</h1>
+
+                <p class="muted">
+                    Official Fee Receipt
+                </p>
+
+                <hr>
+
+                <div class="row">
+                    <span>Student</span>
+                    <strong>${escapeHTML(student.name)}</strong>
+                </div>
+
+                <div class="row">
+                    <span>Student ID</span>
+                    <strong>${student.id}</strong>
+                </div>
+
+                <div class="row">
+                    <span>Class</span>
+                    <strong>${student.class}</strong>
+                </div>
+
+                <div class="row">
+                    <span>Date</span>
+                    <strong>${getToday()}</strong>
+                </div>
+
+                <div class="row total">
+                    <span>Amount Paid</span>
+                    <strong>${money(amount)}</strong>
+                </div>
+
+                <p class="paid">
+                    PAYMENT STATUS: PAID
+                </p>
+
+                <p class="muted">
+                    Thank you for your payment.
+                </p>
+
+            </div>
+
+            <script>
+                window.onload = function() {
+                    window.print();
+                };
+            <\/script>
+
+        </body>
+
+        </html>
+
+    `);
+
+    receiptWindow.document.close();
 
 }
 
@@ -1024,6 +1767,19 @@ function recordPayment() {
 /* =========================================================
    RESULTS
 ========================================================= */
+
+function getGrade(percentage) {
+
+    if (percentage >= 90) return "A+";
+    if (percentage >= 80) return "A";
+    if (percentage >= 70) return "B";
+    if (percentage >= 60) return "C";
+    if (percentage >= 50) return "D";
+
+    return "F";
+
+}
+
 
 function renderResults() {
 
@@ -1033,63 +1789,175 @@ function renderResults() {
     if (!table) return;
 
 
+    if (!results.length) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8">
+                    <div class="empty-state">
+                        <strong>No results entered</strong>
+                        Add marks using the Enter Marks button.
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        updateResultStats();
+
+        return;
+
+    }
+
+
     table.innerHTML =
-        results.map(result => {
+        results.map((result, index) => `
 
-            return `
+            <tr>
 
-                <tr>
+                <td>
+                    <strong>
+                        ${escapeHTML(result.name)}
+                    </strong>
+                </td>
 
-                    <td>
-                        ${result.name}
-                    </td>
+                <td>${result.class}</td>
 
-                    <td>
-                        ${result.class}
-                    </td>
+                <td>${result.math}</td>
 
-                    <td>
-                        ${result.math}
-                    </td>
+                <td>${result.english}</td>
 
-                    <td>
-                        ${result.english}
-                    </td>
+                <td>${result.science}</td>
 
-                    <td>
-                        ${result.science}
-                    </td>
+                <td>
+                    ${result.percentage}%
+                </td>
 
-                    <td>
-                        ${result.percentage}
-                    </td>
+                <td>
 
-                    <td>
+                    <span class="badge grade">
+                        ${result.grade}
+                    </span>
 
-                        <span class="badge active">
-                            ${result.grade}
-                        </span>
+                </td>
 
-                    </td>
+                <td>
 
-                </tr>
+                    <button
+                        class="link-btn danger"
+                        onclick="deleteResult(${index})"
+                    >
+                        Delete
+                    </button>
 
-            `;
+                </td>
 
-        }).join("");
+            </tr>
+
+        `).join("");
+
+
+    updateResultStats();
+
+}
+
+
+function updateResultStats() {
+
+    const average =
+        results.length
+            ? Math.round(
+                results.reduce(
+                    (sum, item) =>
+                        sum + Number(item.percentage),
+                    0
+                ) / results.length
+            )
+            : 0;
+
+
+    const aPlus =
+        results.filter(
+            result => result.grade === "A+"
+        ).length;
+
+
+    document.getElementById(
+        "averagePercentage"
+    ).textContent = `${average}%`;
+
+
+    document.getElementById(
+        "aPlusCount"
+    ).textContent = aPlus;
+
+
+    document.getElementById(
+        "resultsCount"
+    ).textContent = results.length;
+
+}
+
+
+function deleteResult(index) {
+
+    if (!results[index]) return;
+
+
+    if (!confirm("Delete this result?")) return;
+
+
+    results.splice(index, 1);
+
+    saveResults();
+
+    renderResults();
+
+    showToast("Result deleted");
 
 }
 
 
 /* =========================================================
-   RESULT ENTRY
+   RESULT MODAL
 ========================================================= */
 
-function enterMarks() {
+function openResultModal() {
 
-    showToast(
-        "Result entry module is ready"
-    );
+    const select =
+        document.getElementById("resultStudent");
+
+
+    select.innerHTML =
+        students.map(student => `
+
+            <option value="${student.id}">
+                ${escapeHTML(student.name)} — ${student.class}
+            </option>
+
+        `).join("");
+
+
+    if (!students.length) {
+
+        showToast("Add students first");
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("resultModal")
+        .classList.add("show");
+
+}
+
+
+function closeResultModal() {
+
+    document
+        .getElementById("resultModal")
+        .classList.remove("show");
 
 }
 
@@ -1098,61 +1966,97 @@ function enterMarks() {
    NOTICES
 ========================================================= */
 
-function createNotice() {
-
-    const title =
-        prompt("Enter notice title:");
-
-    if (!title) return;
-
-
-    const message =
-        prompt("Enter notice message:");
-
-    if (!message) return;
-
+function renderNotices() {
 
     const grid =
-        document.querySelector(".notice-grid");
+        document.getElementById("noticeGrid");
 
     if (!grid) return;
 
 
-    const article =
-        document.createElement("article");
+    if (!notices.length) {
+
+        grid.innerHTML = `
+            <div class="panel">
+                <div class="empty-state">
+                    <strong>No notices</strong>
+                    Create your first announcement.
+                </div>
+            </div>
+        `;
+
+        return;
+
+    }
 
 
-    article.className =
-        "notice-card";
+    grid.innerHTML =
+        notices.map(notice => `
+
+            <article class="notice-card">
+
+                <button
+                    class="notice-delete"
+                    onclick="deleteNotice(${notice.id})"
+                >
+                    ×
+                </button>
+
+                <span class="notice-tag">
+                    ${escapeHTML(notice.category)}
+                </span>
+
+                <h3>
+                    ${escapeHTML(notice.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(notice.message)}
+                </p>
+
+                <small>
+                    Posted ${escapeHTML(notice.date)} · Admin
+                </small>
+
+            </article>
+
+        `).join("");
+
+}
 
 
-    article.innerHTML = `
+function openNoticeModal() {
 
-        <span class="notice-tag">
-            General
-        </span>
+    document
+        .getElementById("noticeModal")
+        .classList.add("show");
 
-        <h3>
-            ${title}
-        </h3>
-
-        <p>
-            ${message}
-        </p>
-
-        <small>
-            Posted just now · Admin
-        </small>
-
-    `;
+}
 
 
-    grid.prepend(article);
+function closeNoticeModal() {
+
+    document
+        .getElementById("noticeModal")
+        .classList.remove("show");
+
+}
 
 
-    showToast(
-        "Notice created successfully"
-    );
+function deleteNotice(id) {
+
+    if (!confirm("Delete this notice?")) return;
+
+
+    notices =
+        notices.filter(notice => notice.id !== id);
+
+
+    saveNotices();
+
+    renderNotices();
+
+    showToast("Notice deleted");
 
 }
 
@@ -1163,28 +2067,30 @@ function createNotice() {
 
 function saveSettings() {
 
-    const inputs =
-        document.querySelectorAll(
-            ".settings input, .settings textarea"
-        );
+    const settings = {
+
+        academyName:
+            document.getElementById("academyName").value.trim(),
+
+        academyPhone:
+            document.getElementById("academyPhone").value.trim(),
+
+        academyEmail:
+            document.getElementById("academyEmail").value.trim(),
+
+        academyAddress:
+            document.getElementById("academyAddress").value.trim()
+
+    };
 
 
-    const settings = {};
-
-
-    inputs.forEach((input, index) => {
-
-        settings[index] =
-            input.value;
-
-    });
-
-
-    localStorage.setItem(
+    saveStorage(
         "edu_settings",
-        JSON.stringify(settings)
+        settings
     );
 
+
+    updateAcademyPreview();
 
     showToast(
         "Settings saved successfully"
@@ -1193,37 +2099,72 @@ function saveSettings() {
 }
 
 
-/* =========================================================
-   LOAD SETTINGS
-========================================================= */
-
 function loadSettings() {
 
-    const saved =
-        JSON.parse(
-            localStorage.getItem("edu_settings")
-        );
+    const settings =
+        getStorage("edu_settings", null);
+
+    if (!settings) {
+
+        updateAcademyPreview();
+
+        return;
+
+    }
 
 
-    if (!saved) return;
+    document.getElementById("academyName").value =
+        settings.academyName || "";
+
+    document.getElementById("academyPhone").value =
+        settings.academyPhone || "";
+
+    document.getElementById("academyEmail").value =
+        settings.academyEmail || "";
+
+    document.getElementById("academyAddress").value =
+        settings.academyAddress || "";
 
 
-    const inputs =
-        document.querySelectorAll(
-            ".settings input, .settings textarea"
-        );
+    updateAcademyPreview();
+
+}
 
 
-    inputs.forEach((input, index) => {
+function updateAcademyPreview() {
 
-        if (saved[index] !== undefined) {
+    const name =
+        document.getElementById("academyName")?.value ||
+        "EduManage Academy";
 
-            input.value =
-                saved[index];
+    const phone =
+        document.getElementById("academyPhone")?.value ||
+        "0300-1234567";
 
-        }
+    const email =
+        document.getElementById("academyEmail")?.value ||
+        "info@edumanage.pk";
 
-    });
+    const address =
+        document.getElementById("academyAddress")?.value ||
+        "Karachi, Pakistan";
+
+
+    document.getElementById(
+        "previewAcademyName"
+    ).textContent = name;
+
+    document.getElementById(
+        "previewPhone"
+    ).textContent = `☎ ${phone}`;
+
+    document.getElementById(
+        "previewEmail"
+    ).textContent = `✉ ${email}`;
+
+    document.getElementById(
+        "previewAddress"
+    ).textContent = `⌖ ${address}`;
 
 }
 
@@ -1237,16 +2178,7 @@ function setPage(page) {
     const target =
         document.getElementById(page);
 
-
-    if (!target) {
-
-        showToast(
-            "Page not found"
-        );
-
-        return;
-
-    }
+    if (!target) return;
 
 
     document
@@ -1275,21 +2207,21 @@ function setPage(page) {
 
     if (pageData[page]) {
 
-        document.getElementById("pageTitle")
-            .textContent =
-            pageData[page][0];
+        document.getElementById(
+            "pageTitle"
+        ).textContent = pageData[page][0];
 
 
-        document.getElementById("pageSubtitle")
-            .textContent =
-            pageData[page][1];
+        document.getElementById(
+            "pageSubtitle"
+        ).textContent = pageData[page][1];
 
     }
 
 
     document
         .getElementById("sidebar")
-        .classList.remove("open");
+        ?.classList.remove("open");
 
 
     window.scrollTo({
@@ -1301,53 +2233,7 @@ function setPage(page) {
 
 
 /* =========================================================
-   NAVIGATION BUTTONS
-========================================================= */
-
-document
-    .querySelectorAll(".nav-item")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                setPage(
-                    button.dataset.page
-                );
-
-            }
-        );
-
-    });
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-const mobileMenu =
-    document.getElementById("mobileMenu");
-
-
-if (mobileMenu) {
-
-    mobileMenu.addEventListener(
-        "click",
-        () => {
-
-            document
-                .getElementById("sidebar")
-                .classList.toggle("open");
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   ADD STUDENT MODAL
+   STUDENT MODAL
 ========================================================= */
 
 function openModal() {
@@ -1355,6 +2241,7 @@ function openModal() {
     document
         .getElementById("studentModal")
         .classList.add("show");
+
 
     setTimeout(() => {
 
@@ -1377,33 +2264,59 @@ function closeModal() {
 
 
 /* =========================================================
-   ADD STUDENT
+   STUDENT FORM
 ========================================================= */
 
-const studentForm =
-    document.getElementById("studentForm");
+function setupStudentForm() {
+
+    const form =
+        document.getElementById("studentForm");
+
+    if (!form) return;
 
 
-if (studentForm) {
-
-    studentForm.addEventListener(
+    form.addEventListener(
         "submit",
-        function (event) {
+        function(event) {
 
             event.preventDefault();
 
 
             const name =
-                document
-                    .getElementById("newName")
-                    .value
-                    .trim();
+                document.getElementById(
+                    "newName"
+                ).value.trim();
 
 
-            if (!name) {
+            const studentClass =
+                document.getElementById(
+                    "newClass"
+                ).value;
+
+
+            const phone =
+                document.getElementById(
+                    "newPhone"
+                ).value.trim();
+
+
+            const fee =
+                document.getElementById(
+                    "newFee"
+                ).value;
+
+                const feeAmount =
+    Number(
+        document.getElementById(
+            "newFeeAmount"
+        )?.value
+    ) || 3000;
+
+
+            if (!name || !studentClass) {
 
                 showToast(
-                    "Please enter student name"
+                    "Please fill required fields"
                 );
 
                 return;
@@ -1413,32 +2326,23 @@ if (studentForm) {
 
             const newStudent = {
 
-                name: name,
+                name,
 
-                id:
-                    "ST-" +
-                    (
-                        1025 +
-                        students.length
-                    ),
+                id: generateStudentId(),
 
-                class:
-                    document
-                        .getElementById("newClass")
-                        .value,
+                class: studentClass,
 
-                phone:
-                    document
-                        .getElementById("newPhone")
-                        .value
-                        .trim() || "—",
+                phone: phone || "—",
 
-                fee:
-                    document
-                        .getElementById("newFee")
-                        .value,
+                fee,
 
-                status: "Active"
+                feeAmount,
+
+                status: "Active",
+
+                joined: formatDate(
+                    new Date()
+                )
 
             };
 
@@ -1450,18 +2354,18 @@ if (studentForm) {
 
             saveStudents();
 
-
             renderStudents();
 
             renderAttendance();
 
             renderFees();
 
+            updateDashboardStats();
+
 
             closeModal();
 
-
-            this.reset();
+            form.reset();
 
 
             showToast(
@@ -1475,27 +2379,88 @@ if (studentForm) {
 
 
 /* =========================================================
-   MODAL OUTSIDE CLICK
+   TEACHER FORM
 ========================================================= */
 
-const studentModal =
-    document.getElementById("studentModal");
+function setupTeacherForm() {
+
+    const form =
+        document.getElementById("teacherForm");
+
+    if (!form) return;
 
 
-if (studentModal) {
+    form.addEventListener(
+        "submit",
+        function(event) {
 
-    studentModal.addEventListener(
-        "click",
-        event => {
+            event.preventDefault();
 
-            if (
-                event.target ===
-                studentModal
-            ) {
 
-                closeModal();
+            const name =
+                document.getElementById(
+                    "teacherName"
+                ).value.trim();
+
+
+            const subject =
+                document.getElementById(
+                    "teacherSubject"
+                ).value.trim();
+
+
+            if (!name || !subject) {
+
+                showToast(
+                    "Name and subject are required"
+                );
+
+                return;
 
             }
+
+
+            teachers.push({
+
+                name,
+
+                subject,
+
+                exp:
+                    document.getElementById(
+                        "teacherExperience"
+                    ).value.trim() || "Not specified",
+
+                classes:
+                    document.getElementById(
+                        "teacherClasses"
+                    ).value.trim() || "Not specified",
+
+                email:
+                    document.getElementById(
+                        "teacherEmail"
+                    ).value.trim() ||
+                    `${name.toLowerCase().replace(/\s+/g, ".")}@academy.com`,
+
+                initials:
+                    getInitials(name)
+
+            });
+
+
+            saveTeachers();
+
+            renderTeachers();
+
+            updateDashboardStats();
+
+            closeTeacherModal();
+
+            form.reset();
+
+            showToast(
+                `${name} added successfully`
+            );
 
         }
     );
@@ -1504,51 +2469,367 @@ if (studentModal) {
 
 
 /* =========================================================
-   STUDENT SEARCH
+   PAYMENT FORM
 ========================================================= */
 
-const studentSearch =
-    document.getElementById("studentSearch");
+function setupPaymentForm() {
+
+    const form =
+        document.getElementById("paymentForm");
+
+    if (!form) return;
 
 
-if (studentSearch) {
+    form.addEventListener(
+        "submit",
+        function(event) {
 
-    studentSearch.addEventListener(
-        "input",
-        function () {
-
-            const search =
-                this.value
-                    .toLowerCase()
-                    .trim();
+            event.preventDefault();
 
 
-            const filtered =
-                students.filter(student => {
-
-                    return (
-
-                        student.name +
-                        " " +
-                        student.id +
-                        " " +
-                        student.class +
-                        " " +
-                        student.phone
-
-                    )
-                    .toLowerCase()
-                    .includes(search);
-
-                });
+            const studentId =
+                document.getElementById(
+                    "paymentStudent"
+                ).value;
 
 
-            renderStudents(
-                filtered
+            const amount =
+                Number(
+                    document.getElementById(
+                        "paymentAmount"
+                    ).value
+                );
+
+
+            const student =
+                students.find(
+                    item => item.id === studentId
+                );
+
+
+            if (!student) {
+
+                showToast(
+                    "Please select a student"
+                );
+
+                return;
+
+            }
+
+
+            student.fee = "Paid";
+
+            student.feeAmount =
+                amount || 3000;
+
+
+            payments.push({
+
+                id: Date.now(),
+
+                studentId: student.id,
+
+                studentName: student.name,
+
+                amount: amount || 3000,
+
+                date:
+                    document.getElementById(
+                        "paymentDate"
+                    ).value ||
+                    getToday()
+
+            });
+
+
+            saveStudents();
+
+            savePayments();
+
+            renderStudents();
+
+            renderFees();
+
+            updateDashboardStats();
+
+            closePaymentModal();
+
+            form.reset();
+
+            showToast(
+                `Payment recorded for ${student.name}`
             );
 
         }
     );
+
+}
+
+
+/* =========================================================
+   RESULT FORM
+========================================================= */
+
+function setupResultForm() {
+
+    const form =
+        document.getElementById("resultForm");
+
+    if (!form) return;
+
+
+    form.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const studentId =
+                document.getElementById(
+                    "resultStudent"
+                ).value;
+
+
+            const student =
+                students.find(
+                    item => item.id === studentId
+                );
+
+
+            if (!student) return;
+
+
+            const math =
+                Number(
+                    document.getElementById(
+                        "resultMath"
+                    ).value
+                );
+
+
+            const english =
+                Number(
+                    document.getElementById(
+                        "resultEnglish"
+                    ).value
+                );
+
+
+            const science =
+                Number(
+                    document.getElementById(
+                        "resultScience"
+                    ).value
+                );
+
+
+            const percentage =
+                Math.round(
+                    (math + english + science) / 3
+                );
+
+
+            const grade =
+                getGrade(percentage);
+
+
+            const existingIndex =
+                results.findIndex(
+                    result =>
+                        result.studentId === studentId
+                );
+
+
+            const resultData = {
+
+                name: student.name,
+
+                studentId: student.id,
+
+                class: student.class,
+
+                math,
+
+                english,
+
+                science,
+
+                percentage,
+
+                grade
+
+            };
+
+
+            if (existingIndex >= 0) {
+
+                results[existingIndex] =
+                    resultData;
+
+            } else {
+
+                results.unshift(
+                    resultData
+                );
+
+            }
+
+
+            saveResults();
+
+            renderResults();
+
+            closeResultModal();
+
+            form.reset();
+
+            showToast(
+                `Result saved for ${student.name}`
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   NOTICE FORM
+========================================================= */
+
+function setupNoticeForm() {
+
+    const form =
+        document.getElementById("noticeForm");
+
+    if (!form) return;
+
+
+    form.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const title =
+                document.getElementById(
+                    "noticeTitle"
+                ).value.trim();
+
+
+            const category =
+                document.getElementById(
+                    "noticeCategory"
+                ).value;
+
+
+            const message =
+                document.getElementById(
+                    "noticeMessage"
+                ).value.trim();
+
+
+            if (!title || !message) {
+
+                showToast(
+                    "Please complete the notice"
+                );
+
+                return;
+
+            }
+
+
+            notices.unshift({
+
+                id: Date.now(),
+
+                title,
+
+                category,
+
+                message,
+
+                date: formatDate(
+                    new Date()
+                )
+
+            });
+
+
+            saveNotices();
+
+            renderNotices();
+
+            closeNoticeModal();
+
+            form.reset();
+
+            showToast(
+                "Notice published successfully"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function filterStudents() {
+
+    const search =
+        document.getElementById(
+            "studentSearch"
+        )?.value
+            .toLowerCase()
+            .trim() || "";
+
+
+    const classFilter =
+        document.getElementById(
+            "classFilter"
+        )?.value || "";
+
+
+    const filtered =
+        students.filter(student => {
+
+            const matchesSearch = (
+
+                student.name +
+                " " +
+                student.id +
+                " " +
+                student.class +
+                " " +
+                student.phone
+
+            )
+                .toLowerCase()
+                .includes(search);
+
+
+            const matchesClass =
+                !classFilter ||
+                student.class === classFilter;
+
+
+            return (
+                matchesSearch &&
+                matchesClass
+            );
+
+        });
+
+
+    renderStudents(filtered);
 
 }
 
@@ -1557,47 +2838,155 @@ if (studentSearch) {
    GLOBAL SEARCH
 ========================================================= */
 
-const globalSearch =
-    document.getElementById("globalSearch");
+function setupGlobalSearch() {
+
+    const search =
+        document.getElementById(
+            "globalSearch"
+        );
+
+    if (!search) return;
 
 
-if (globalSearch) {
+    search.addEventListener(
+        "keydown",
+        event => {
 
-    globalSearch.addEventListener(
-        "input",
-        function () {
-
-            const search =
-                this.value
-                    .trim()
-                    .toLowerCase();
+            if (event.key !== "Enter") return;
 
 
-            if (!search) {
+            const value =
+                search.value.trim();
 
-                return;
 
-            }
+            if (!value) return;
 
 
             setPage("students");
 
 
-            const studentInput =
+            const studentSearch =
                 document.getElementById(
                     "studentSearch"
                 );
 
 
-            studentInput.value =
-                search;
+            studentSearch.value =
+                value;
 
 
-            studentInput.dispatchEvent(
-                new Event("input")
-            );
+            filterStudents();
 
         }
+    );
+
+}
+
+
+/* =========================================================
+   EXPORT STUDENTS
+========================================================= */
+
+function exportStudents() {
+
+    if (!students.length) {
+
+        showToast(
+            "No students to export"
+        );
+
+        return;
+
+    }
+
+
+    const headers = [
+        "Name",
+        "Student ID",
+        "Class",
+        "Phone",
+        "Fee",
+        "Status"
+    ];
+
+
+    const rows =
+        students.map(student => [
+
+            student.name,
+            student.id,
+            student.class,
+            student.phone,
+            student.fee,
+            student.status
+
+        ]);
+
+
+    const csv = [
+
+        headers,
+
+        ...rows
+
+    ]
+        .map(row =>
+            row
+                .map(value =>
+                    `"${String(value).replace(/"/g, '""')}"`
+                )
+                .join(",")
+        )
+        .join("\n");
+
+
+    const blob =
+        new Blob(
+            [csv],
+            {
+                type: "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        "edumanage-students.csv";
+
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+    URL.revokeObjectURL(url);
+
+
+    showToast(
+        "Students exported successfully"
+    );
+
+}
+
+
+/* =========================================================
+   CONTACT DEVELOPER
+========================================================= */
+
+function contactDeveloper() {
+
+    showToast(
+        "Developer contact request noted"
     );
 
 }
@@ -1615,7 +3004,6 @@ function showToast(message) {
     const toast =
         document.getElementById("toast");
 
-
     if (!toast) return;
 
 
@@ -1623,139 +3011,352 @@ function showToast(message) {
         message;
 
 
-    toast.classList.add(
-        "show"
-    );
+    toast.classList.add("show");
 
 
-    clearTimeout(
-        toastTimer
-    );
+    clearTimeout(toastTimer);
 
 
     toastTimer =
         setTimeout(() => {
 
-            toast.classList.remove(
-                "show"
-            );
+            toast.classList.remove("show");
 
-        }, 2500);
+        }, 2600);
 
 }
 
 
 /* =========================================================
-   FIX EXISTING BUTTONS IN HTML
+   MOBILE MENU
+========================================================= */
+
+function setupMobileMenu() {
+
+    const button =
+        document.getElementById("mobileMenu");
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+
+    if (!button || !sidebar) return;
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function setupNavigation() {
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    setPage(
+                        button.dataset.page
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   MODAL OUTSIDE CLICK
+========================================================= */
+
+function setupModalClicks() {
+
+    document
+        .querySelectorAll(".modal")
+        .forEach(modal => {
+
+            modal.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        modal.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function getToday() {
+
+    const date =
+        new Date();
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function formatDate(date) {
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   DASHBOARD DATE
+========================================================= */
+
+function setupDashboardDate() {
+
+    const element =
+        document.getElementById(
+            "dashboardDate"
+        );
+
+    if (!element) return;
+
+
+    element.textContent =
+        formatDate(new Date());
+
+}
+
+
+/* =========================================================
+   DATE CHANGE
+========================================================= */
+
+function setupAttendanceFilters() {
+
+    document
+        .getElementById("attendanceClass")
+        ?.addEventListener(
+            "change",
+            renderAttendance
+        );
+
+
+    document
+        .getElementById("attendanceDate")
+        ?.addEventListener(
+            "change",
+            renderAttendance
+        );
+
+}
+
+
+/* =========================================================
+   LIVE SETTINGS PREVIEW
+========================================================= */
+
+function setupSettingsPreview() {
+
+    [
+        "academyName",
+        "academyPhone",
+        "academyEmail",
+        "academyAddress"
+
+    ].forEach(id => {
+
+        document
+            .getElementById(id)
+            ?.addEventListener(
+                "input",
+                updateAcademyPreview
+            );
+
+    });
+
+}
+
+
+/* =========================================================
+   INITIALIZE
 ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        /* Add Teacher */
-        const teacherButton =
-            document.querySelector(
-                "#teachers .primary-btn"
+        /* Default date */
+
+        const attendanceDate =
+            document.getElementById(
+                "attendanceDate"
             );
 
-        if (teacherButton) {
 
-            teacherButton.onclick =
-                addTeacher;
+        if (attendanceDate) {
+
+            attendanceDate.value =
+                getToday();
 
         }
 
 
-        /* Save Attendance */
-        const attendanceButton =
-            document.querySelector(
-                "#attendance .primary-btn"
+        /* Navigation */
+
+        setupNavigation();
+
+
+        /* Mobile */
+
+        setupMobileMenu();
+
+
+        /* Modals */
+
+        setupModalClicks();
+
+
+        /* Forms */
+
+        setupStudentForm();
+
+        setupTeacherForm();
+
+        setupPaymentForm();
+
+        setupResultForm();
+
+        setupNoticeForm();
+
+
+        /* Search */
+
+        document
+            .getElementById("studentSearch")
+            ?.addEventListener(
+                "input",
+                filterStudents
             );
 
-        if (attendanceButton) {
 
-            attendanceButton.onclick =
-                saveAttendance;
-
-        }
-
-
-        /* Record Payment */
-        const paymentButton =
-            document.querySelector(
-                "#fees .primary-btn"
+        document
+            .getElementById("classFilter")
+            ?.addEventListener(
+                "change",
+                filterStudents
             );
 
-        if (paymentButton) {
 
-            paymentButton.onclick =
-                recordPayment;
-
-        }
+        setupGlobalSearch();
 
 
-        /* Enter Marks */
-        const marksButton =
-            document.querySelector(
-                "#results .primary-btn"
-            );
+        /* Attendance */
 
-        if (marksButton) {
-
-            marksButton.onclick =
-                enterMarks;
-
-        }
+        setupAttendanceFilters();
 
 
-        /* Create Notice */
-        const noticeButton =
-            document.querySelector(
-                "#notices .primary-btn"
-            );
+        /* Settings */
 
-        if (noticeButton) {
-
-            noticeButton.onclick =
-                createNotice;
-
-        }
+        setupSettingsPreview();
 
 
-        /* Save Settings */
-        const settingsButton =
-            document.querySelector(
-                "#settings .primary-btn"
-            );
+        /* Dashboard */
 
-        if (settingsButton) {
-
-            settingsButton.onclick =
-                saveSettings;
-
-        }
+        setupDashboardDate();
 
 
-        /* Load saved settings */
+        /* Render */
+
+        renderStudents();
+
+        renderTeachers();
+
+        renderAttendance();
+
+        renderFees();
+
+        renderResults();
+
+        renderNotices();
+
+
+        /* Settings */
+
         loadSettings();
+
+
+        /* Dashboard */
+
+        updateDashboardStats();
 
     }
 );
-
-
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
-
-renderStudents();
-
-renderTeachers();
-
-renderAttendance();
-
-renderFees();
-
-renderResults();
-
-loadSettings();

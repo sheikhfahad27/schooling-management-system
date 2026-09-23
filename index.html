@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EduManage - Academy Management System</title>
+    <title>EduManage Pro - Academy Management System</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,80 +19,90 @@
 <div class="app">
 
     <!-- ================= SIDEBAR ================= -->
+
     <aside class="sidebar" id="sidebar">
 
         <div class="brand">
-            <div class="brand-logo">E</div>
+
+            <div class="brand-logo">
+                EM
+            </div>
 
             <div>
                 <h2>EduManage</h2>
                 <span>Academy System</span>
             </div>
+
         </div>
 
-        <div class="menu-title">MAIN MENU</div>
+        <div class="sidebar-section">
+            <span>MAIN MENU</span>
+        </div>
 
-        <nav>
+        <nav class="navigation">
 
             <button class="nav-item active" data-page="dashboard">
-                <span>▦</span>
-                Dashboard
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
             </button>
 
             <button class="nav-item" data-page="students">
-                <span>♙</span>
-                Students
+                <span class="nav-icon">♙</span>
+                <span>Students</span>
             </button>
 
             <button class="nav-item" data-page="teachers">
-                <span>♟</span>
-                Teachers
+                <span class="nav-icon">♟</span>
+                <span>Teachers</span>
             </button>
 
             <button class="nav-item" data-page="attendance">
-                <span>✓</span>
-                Attendance
+                <span class="nav-icon">✓</span>
+                <span>Attendance</span>
             </button>
 
             <button class="nav-item" data-page="fees">
-                <span>₨</span>
-                Fees
+                <span class="nav-icon">₨</span>
+                <span>Fee Management</span>
             </button>
 
             <button class="nav-item" data-page="results">
-                <span>▤</span>
-                Results
+                <span class="nav-icon">▥</span>
+                <span>Results</span>
             </button>
 
             <button class="nav-item" data-page="notices">
-                <span>◉</span>
-                Notices
+                <span class="nav-icon">◉</span>
+                <span>Notices</span>
             </button>
 
-        </nav>
+            <div class="sidebar-section settings-label">
+                <span>SYSTEM</span>
+            </div>
 
-        <div class="menu-title">SYSTEM</div>
-
-        <nav>
             <button class="nav-item" data-page="settings">
-                <span>⚙</span>
-                Settings
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
             </button>
+
         </nav>
 
-        <div class="sidebar-help">
+        <div class="sidebar-bottom">
 
-            <div class="help-icon">✦</div>
+            <div class="help-card">
 
-            <strong>Need a custom system?</strong>
+                <div class="help-icon">?</div>
 
-            <p>
-                Upgrade this demo with your academy's requirements.
-            </p>
+                <div>
+                    <strong>Need a custom system?</strong>
+                    <p>Get a management system for your academy.</p>
+                </div>
 
-            <button onclick="showToast('Contact request noted')">
-                Contact Developer
-            </button>
+                <button onclick="contactDeveloper()">
+                    Contact Developer
+                </button>
+
+            </div>
 
         </div>
 
@@ -106,7 +117,7 @@
 
         <header class="topbar">
 
-            <div class="top-left">
+            <div class="topbar-left">
 
                 <button class="mobile-menu" id="mobileMenu">
                     ☰
@@ -114,7 +125,6 @@
 
                 <div>
                     <h1 id="pageTitle">Dashboard</h1>
-
                     <p id="pageSubtitle">
                         Welcome back! Here's what's happening today.
                     </p>
@@ -122,33 +132,25 @@
 
             </div>
 
+            <div class="topbar-right">
 
-            <div class="top-actions">
-
-                <div class="search">
-
+                <div class="global-search">
                     <span>⌕</span>
-
                     <input
                         type="text"
                         id="globalSearch"
-                        placeholder="Search..."
+                        placeholder="Search students..."
                     >
-
                 </div>
 
-                <button
-                    class="notification"
-                    onclick="showToast('No new notifications')"
-                >
-                    🔔
-                    <i></i>
+                <button class="notification-btn" onclick="showToast('No new notifications')">
+                    ♢
+                    <span></span>
                 </button>
-
 
                 <div class="profile">
 
-                    <div class="avatar">
+                    <div class="profile-avatar">
                         FA
                     </div>
 
@@ -166,37 +168,30 @@
 
         <!-- CONTENT -->
 
-        <section class="content">
+        <div class="content">
 
 
             <!-- ================= DASHBOARD ================= -->
 
-            <div class="page active" id="dashboard">
+            <section class="page active" id="dashboard">
 
-                <div class="welcome">
+                <div class="welcome-banner">
 
                     <div>
 
-                        <span class="date">
-                            TUESDAY, 22 SEPTEMBER 2026
+                        <span class="eyebrow">
+                            ACADEMY OVERVIEW
                         </span>
 
-                        <h2>
-                            Good afternoon, Admin 👋
-                        </h2>
+                        <h2>Good morning, Fahad 👋</h2>
 
                         <p>
-                            Manage your academy from one simple dashboard.
+                            Here's a quick overview of your academy today.
                         </p>
 
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="openModal()"
-                    >
-                        + Add Student
-                    </button>
+                    <div class="banner-date" id="dashboardDate"></div>
 
                 </div>
 
@@ -207,88 +202,52 @@
 
                     <div class="stat-card">
 
-                        <div class="stat-icon blue">
-                            ♙
+                        <div class="stat-top">
+                            <span class="stat-icon blue">♙</span>
+                            <span class="stat-change positive">+8.2%</span>
                         </div>
 
-                        <div>
-
-                            <span>Total Students</span>
-
-                            <strong>248</strong>
-
-                            <small class="positive">
-                                ↗ 12%
-                                <em>vs last month</em>
-                            </small>
-
-                        </div>
+                        <strong id="totalStudents">0</strong>
+                        <span>Total Students</span>
 
                     </div>
 
 
                     <div class="stat-card">
 
-                        <div class="stat-icon purple">
-                            ♟
+                        <div class="stat-top">
+                            <span class="stat-icon purple">♟</span>
+                            <span class="stat-change positive">+2</span>
                         </div>
 
-                        <div>
-
-                            <span>Total Teachers</span>
-
-                            <strong>18</strong>
-
-                            <small class="positive">
-                                ↗ 2 new
-                                <em>this month</em>
-                            </small>
-
-                        </div>
+                        <strong id="totalTeachers">0</strong>
+                        <span>Total Teachers</span>
 
                     </div>
 
 
                     <div class="stat-card">
 
-                        <div class="stat-icon green">
-                            ✓
+                        <div class="stat-top">
+                            <span class="stat-icon green">✓</span>
+                            <span class="stat-change positive">Today</span>
                         </div>
 
-                        <div>
-
-                            <span>Today's Attendance</span>
-
-                            <strong>92.4%</strong>
-
-                            <small class="positive">
-                                ↗ 3.2%
-                                <em>vs yesterday</em>
-                            </small>
-
-                        </div>
+                        <strong id="attendancePercentage">0%</strong>
+                        <span>Attendance Rate</span>
 
                     </div>
 
 
                     <div class="stat-card">
 
-                        <div class="stat-icon orange">
-                            ₨
+                        <div class="stat-top">
+                            <span class="stat-icon orange">₨</span>
+                            <span class="stat-change warning">This Month</span>
                         </div>
 
-                        <div>
-
-                            <span>Fees Collected</span>
-
-                            <strong>₨486K</strong>
-
-                            <small class="positive">
-                                ↗ 8.6%
-                                <em>this month</em>
-                            </small>
-
-                        </div>
+                        <strong id="feeCollected">₨0</strong>
+                        <span>Fees Collected</span>
 
                     </div>
 
@@ -297,75 +256,60 @@
 
                 <!-- CHARTS -->
 
-                <div class="two-columns">
+                <div class="dashboard-grid">
 
                     <div class="panel">
 
                         <div class="panel-header">
 
                             <div>
-
                                 <h3>Attendance Overview</h3>
-
-                                <p>
-                                    Student attendance for current week
-                                </p>
-
+                                <p>Daily attendance statistics</p>
                             </div>
 
-                            <select>
+                            <select id="attendanceChartFilter">
                                 <option>This Week</option>
                                 <option>This Month</option>
                             </select>
 
                         </div>
 
+                        <div class="chart" id="attendanceChart">
 
-                        <div class="chart">
-
-                            <div class="y-axis">
-
-                                <span>100%</span>
-                                <span>75%</span>
-                                <span>50%</span>
-                                <span>25%</span>
-                                <span>0%</span>
-
+                            <div class="chart-bar">
+                                <span>Mon</span>
+                                <div style="height:72%"></div>
+                                <b>72%</b>
                             </div>
 
+                            <div class="chart-bar">
+                                <span>Tue</span>
+                                <div style="height:84%"></div>
+                                <b>84%</b>
+                            </div>
 
-                            <div class="bars">
+                            <div class="chart-bar">
+                                <span>Wed</span>
+                                <div style="height:79%"></div>
+                                <b>79%</b>
+                            </div>
 
-                                <div class="bar-item">
-                                    <div class="bar" style="height:84%"></div>
-                                    <small>Mon</small>
-                                </div>
+                            <div class="chart-bar">
+                                <span>Thu</span>
+                                <div style="height:91%"></div>
+                                <b>91%</b>
+                            </div>
 
-                                <div class="bar-item">
-                                    <div class="bar" style="height:91%"></div>
-                                    <small>Tue</small>
-                                </div>
+                            <div class="chart-bar">
+                                <span>Fri</span>
+                                <div style="height:87%"></div>
+                                <b>87%</b>
+                            </div>
 
-                                <div class="bar-item">
-                                    <div class="bar" style="height:87%"></div>
-                                    <small>Wed</small>
-                                </div>
-
-                                <div class="bar-item">
-                                    <div class="bar" style="height:94%"></div>
-                                    <small>Thu</small>
-                                </div>
-
-                                <div class="bar-item">
-                                    <div class="bar" style="height:89%"></div>
-                                    <small>Fri</small>
-                                </div>
-
-                                <div class="bar-item">
-                                    <div class="bar" style="height:76%"></div>
-                                    <small>Sat</small>
-                                </div>
-
+                            <div class="chart-bar">
+                                <span>Sat</span>
+                                <div style="height:76%"></div>
+                                <b>76%</b>
                             </div>
 
                         </div>
@@ -373,54 +317,56 @@
                     </div>
 
 
-                    <!-- FEE SUMMARY -->
-
                     <div class="panel">
 
                         <div class="panel-header">
 
                             <div>
-
                                 <h3>Fee Summary</h3>
-
-                                <p>September 2026</p>
-
+                                <p>Current payment overview</p>
                             </div>
 
-                            <button
-                                class="link-btn"
-                                onclick="setPage('fees')"
-                            >
-                                View all →
+                            <button class="icon-btn" onclick="setPage('fees')">
+                                →
                             </button>
 
                         </div>
 
+                        <div class="fee-summary">
 
-                        <div class="fee-circle">
-
-                            <div>
-                                <strong>78%</strong>
-                                <span>Collected</span>
+                            <div class="fee-circle">
+                                <div>
+                                    <strong id="feePercentage">0%</strong>
+                                    <span>Collected</span>
+                                </div>
                             </div>
 
-                        </div>
+                            <div class="fee-details">
 
+                                <div>
+                                    <span>
+                                        <i class="dot paid-dot"></i>
+                                        Paid
+                                    </span>
+                                    <strong id="paidCount">0</strong>
+                                </div>
 
-                        <div class="fee-details">
+                                <div>
+                                    <span>
+                                        <i class="dot pending-dot"></i>
+                                        Pending
+                                    </span>
+                                    <strong id="pendingCount">0</strong>
+                                </div>
 
-                            <div>
-                                <i class="blue-dot"></i>
-                                Collected
+                                <div>
+                                    <span>
+                                        <i class="dot total-dot"></i>
+                                        Total
+                                    </span>
+                                    <strong id="feeTotal">0</strong>
+                                </div>
 
-                                <b>₨486,000</b>
-                            </div>
-
-                            <div>
-                                <i class="gray-dot"></i>
-                                Pending
-
-                                <b>₨138,000</b>
                             </div>
 
                         </div>
@@ -437,37 +383,28 @@
                     <div class="panel-header">
 
                         <div>
-
                             <h3>Recent Students</h3>
-
-                            <p>Latest admissions</p>
-
+                            <p>Recently registered students</p>
                         </div>
 
-                        <button
-                            class="link-btn"
-                            onclick="setPage('students')"
-                        >
-                            View all →
+                        <button class="secondary-btn" onclick="setPage('students')">
+                            View All
                         </button>
 
                     </div>
 
-
-                    <div class="table-container">
+                    <div class="table-wrapper">
 
                         <table>
 
                             <thead>
-
-                            <tr>
-                                <th>Student</th>
-                                <th>Class</th>
-                                <th>Admission Date</th>
-                                <th>Fee Status</th>
-                                <th>Status</th>
-                            </tr>
-
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Joined</th>
+                                    <th>Fee</th>
+                                    <th>Status</th>
+                                </tr>
                             </thead>
 
                             <tbody id="recentStudents"></tbody>
@@ -478,12 +415,12 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- ================= STUDENTS ================= -->
 
-            <div class="page" id="students">
+            <section class="page" id="students">
 
                 <div class="page-header">
 
@@ -492,10 +429,7 @@
                         <p>Manage all enrolled students.</p>
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="openModal()"
-                    >
+                    <button class="primary-btn" onclick="openModal()">
                         + Add Student
                     </button>
 
@@ -504,23 +438,31 @@
 
                 <div class="toolbar">
 
-                    <div class="search wide">
-                        ⌕
+                    <div class="search-box">
+
+                        <span>⌕</span>
+
                         <input
+                            type="text"
                             id="studentSearch"
-                            placeholder="Search student name or ID..."
+                            placeholder="Search by name, ID, class or phone..."
                         >
+
                     </div>
 
-                    <select>
-                        <option>All Classes</option>
-                        <option>Grade 9</option>
-                        <option>Grade 10</option>
-                        <option>Grade 11</option>
+                    <select id="classFilter">
+
+                        <option value="">All Classes</option>
+                        <option value="Grade 8">Grade 8</option>
+                        <option value="Grade 9">Grade 9</option>
+                        <option value="Grade 10">Grade 10</option>
+                        <option value="Grade 11">Grade 11</option>
+                        <option value="Grade 12">Grade 12</option>
+
                     </select>
 
-                    <button class="secondary-btn">
-                        ⇩ Export
+                    <button class="secondary-btn" onclick="exportStudents()">
+                        ↓ Export
                     </button>
 
                 </div>
@@ -528,21 +470,21 @@
 
                 <div class="panel">
 
-                    <div class="table-container">
+                    <div class="table-wrapper">
 
                         <table>
 
                             <thead>
 
-                            <tr>
-                                <th>Student</th>
-                                <th>ID</th>
-                                <th>Class</th>
-                                <th>Phone</th>
-                                <th>Fee</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>ID</th>
+                                    <th>Class</th>
+                                    <th>Phone</th>
+                                    <th>Fee</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
 
                             </thead>
 
@@ -554,12 +496,12 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- ================= TEACHERS ================= -->
 
-            <div class="page" id="teachers">
+            <section class="page" id="teachers">
 
                 <div class="page-header">
 
@@ -568,84 +510,79 @@
                         <p>Manage your teaching staff.</p>
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="showToast('Teacher form opened')"
-                    >
+                    <button class="primary-btn" onclick="openTeacherModal()">
                         + Add Teacher
                     </button>
 
                 </div>
 
+                <div class="teacher-grid" id="teacherGrid"></div>
 
-                <div
-                    class="teacher-grid"
-                    id="teacherGrid"
-                ></div>
-
-            </div>
+            </section>
 
 
             <!-- ================= ATTENDANCE ================= -->
 
-            <div class="page" id="attendance">
+            <section class="page" id="attendance">
 
                 <div class="page-header">
 
                     <div>
                         <h2>Attendance</h2>
-                        <p>
-                            Record and monitor daily attendance.
-                        </p>
+                        <p>Record and monitor daily attendance.</p>
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="showToast('Attendance saved successfully')"
-                    >
-                        ✓ Save Attendance
+                    <button class="primary-btn" onclick="saveAttendance()">
+                        Save Attendance
                     </button>
 
                 </div>
 
 
-                <div class="toolbar">
+                <div class="attendance-controls">
 
-                    <select>
-                        <option>Grade 10 - A</option>
-                        <option>Grade 9 - A</option>
-                        <option>Grade 11 - A</option>
-                    </select>
+                    <div>
+                        <label>Class</label>
 
-                    <input
-                        class="date-input"
-                        type="date"
-                        value="2026-09-22"
-                    >
+                        <select id="attendanceClass">
+                            <option value="">All Classes</option>
+                            <option>Grade 9</option>
+                            <option>Grade 10</option>
+                            <option>Grade 11</option>
+                            <option>Grade 12</option>
+                        </select>
+                    </div>
 
-                    <span class="attendance-count">
-                        Present:
-                        <b>22</b>
-                        / 24
-                    </span>
+                    <div>
+                        <label>Date</label>
+
+                        <input
+                            type="date"
+                            id="attendanceDate"
+                        >
+                    </div>
+
+                    <div class="attendance-count">
+                        Present: <b>0</b> / 0
+                    </div>
 
                 </div>
 
 
                 <div class="panel">
 
-                    <div class="table-container">
+                    <div class="table-wrapper">
 
                         <table>
 
                             <thead>
 
-                            <tr>
-                                <th>Student</th>
-                                <th>Roll No.</th>
-                                <th>Status</th>
-                                <th>Mark</th>
-                            </tr>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>ID</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
 
                             </thead>
 
@@ -657,61 +594,42 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- ================= FEES ================= -->
 
-            <div class="page" id="fees">
+            <section class="page" id="fees">
 
                 <div class="page-header">
 
                     <div>
                         <h2>Fee Management</h2>
-                        <p>
-                            Track payments and outstanding fees.
-                        </p>
+                        <p>Track payments and outstanding fees.</p>
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="showToast('Payment form opened')"
-                    >
+                    <button class="primary-btn" onclick="openPaymentModal()">
                         + Record Payment
                     </button>
 
                 </div>
 
 
-                <div class="stats-grid small">
+                <div class="small-stats">
 
-                    <div class="stat-card">
-                        <div class="stat-icon green">₨</div>
-
-                        <div>
-                            <span>Collected</span>
-                            <strong>₨486K</strong>
-                        </div>
+                    <div>
+                        <span>Collected</span>
+                        <strong id="feesPageCollected">₨0</strong>
                     </div>
 
-
-                    <div class="stat-card">
-                        <div class="stat-icon orange">!</div>
-
-                        <div>
-                            <span>Pending</span>
-                            <strong>₨138K</strong>
-                        </div>
+                    <div>
+                        <span>Pending</span>
+                        <strong id="feesPagePending">₨0</strong>
                     </div>
 
-
-                    <div class="stat-card">
-                        <div class="stat-icon blue">▣</div>
-
-                        <div>
-                            <span>Invoices</span>
-                            <strong>248</strong>
-                        </div>
+                    <div>
+                        <span>Total Expected</span>
+                        <strong id="feesPageTotal">₨0</strong>
                     </div>
 
                 </div>
@@ -719,30 +637,20 @@
 
                 <div class="panel">
 
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>Fee Records</h3>
-                            <p>September 2026</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="table-container">
+                    <div class="table-wrapper">
 
                         <table>
 
                             <thead>
 
-                            <tr>
-                                <th>Student</th>
-                                <th>Class</th>
-                                <th>Amount</th>
-                                <th>Due Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Amount</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
 
                             </thead>
 
@@ -754,24 +662,21 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- ================= RESULTS ================= -->
 
-            <div class="page" id="results">
+            <section class="page" id="results">
 
                 <div class="page-header">
 
                     <div>
                         <h2>Results</h2>
-                        <p>Manage exams and student marks.</p>
+                        <p>Manage exams, marks and student results.</p>
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="showToast('Result entry opened')"
-                    >
+                    <button class="primary-btn" onclick="openResultModal()">
                         + Enter Marks
                     </button>
 
@@ -780,22 +685,19 @@
 
                 <div class="result-cards">
 
-                    <div class="result-card">
-                        <span>Current Exam</span>
-                        <strong>Monthly Assessment</strong>
-                        <small>September 2026</small>
+                    <div>
+                        <span>Average Percentage</span>
+                        <strong id="averagePercentage">0%</strong>
                     </div>
 
-                    <div class="result-card">
-                        <span>Students Appeared</span>
-                        <strong>232</strong>
-                        <small>93.5% of enrolled</small>
+                    <div>
+                        <span>A+ Students</span>
+                        <strong id="aPlusCount">0</strong>
                     </div>
 
-                    <div class="result-card">
-                        <span>Average Score</span>
-                        <strong>76.8%</strong>
-                        <small>Across all classes</small>
+                    <div>
+                        <span>Results Entered</span>
+                        <strong id="resultsCount">0</strong>
                     </div>
 
                 </div>
@@ -803,31 +705,22 @@
 
                 <div class="panel">
 
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>Recent Results</h3>
-                            <p>Latest published results</p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="table-container">
+                    <div class="table-wrapper">
 
                         <table>
 
                             <thead>
 
-                            <tr>
-                                <th>Student</th>
-                                <th>Class</th>
-                                <th>Math</th>
-                                <th>English</th>
-                                <th>Science</th>
-                                <th>Percentage</th>
-                                <th>Grade</th>
-                            </tr>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Math</th>
+                                    <th>English</th>
+                                    <th>Science</th>
+                                    <th>Percentage</th>
+                                    <th>Grade</th>
+                                    <th>Action</th>
+                                </tr>
 
                             </thead>
 
@@ -839,247 +732,311 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- ================= NOTICES ================= -->
 
-            <div class="page" id="notices">
+            <section class="page" id="notices">
 
                 <div class="page-header">
 
                     <div>
                         <h2>Notices</h2>
-                        <p>
-                            Announcements for students and parents.
-                        </p>
+                        <p>Announcements for students and parents.</p>
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="showToast('Notice editor opened')"
-                    >
+                    <button class="primary-btn" onclick="openNoticeModal()">
                         + Create Notice
                     </button>
 
                 </div>
 
 
-                <div class="notice-grid">
+                <div class="notice-grid" id="noticeGrid"></div>
 
-                    <article class="notice-card">
-
-                        <span class="notice-tag important">
-                            Important
-                        </span>
-
-                        <h3>Monthly Test Schedule</h3>
-
-                        <p>
-                            Monthly assessment will begin from
-                            28 September. Students should bring
-                            their stationery.
-                        </p>
-
-                        <small>
-                            Posted 2 days ago · Admin
-                        </small>
-
-                    </article>
-
-
-                    <article class="notice-card">
-
-                        <span class="notice-tag">
-                            General
-                        </span>
-
-                        <h3>Fee Submission Reminder</h3>
-
-                        <p>
-                            Please submit September fees before
-                            the 25th to avoid late charges.
-                        </p>
-
-                        <small>
-                            Posted 5 days ago · Accounts
-                        </small>
-
-                    </article>
-
-
-                    <article class="notice-card">
-
-                        <span class="notice-tag">
-                            Event
-                        </span>
-
-                        <h3>Parent Teacher Meeting</h3>
-
-                        <p>
-                            PTM is scheduled for Saturday,
-                            3 October 2026 from 10 AM to 1 PM.
-                        </p>
-
-                        <small>
-                            Posted 1 week ago · Admin
-                        </small>
-
-                    </article>
-
-                </div>
-
-            </div>
+            </section>
 
 
             <!-- ================= SETTINGS ================= -->
 
-            <div class="page" id="settings">
+            <section class="page" id="settings">
 
                 <div class="page-header">
 
                     <div>
                         <h2>Settings</h2>
-                        <p>
-                            Configure your academy profile.
-                        </p>
+                        <p>Configure your academy profile.</p>
                     </div>
 
-                    <button
-                        class="primary-btn"
-                        onclick="showToast('Settings saved')"
-                    >
+                    <button class="primary-btn" onclick="saveSettings()">
                         Save Changes
                     </button>
 
                 </div>
 
 
-                <div class="panel settings">
+                <div class="settings-layout">
 
-                    <label>
-                        Academy Name
+                    <div class="panel">
 
-                        <input
-                            value="Bright Future Academy"
-                        >
-                    </label>
+                        <div class="panel-header">
+                            <div>
+                                <h3>Academy Profile</h3>
+                                <p>Basic information about your academy.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group full">
+                                <label>Academy Name</label>
+                                <input
+                                    type="text"
+                                    id="academyName"
+                                    value="EduManage Academy"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input
+                                    type="text"
+                                    id="academyPhone"
+                                    value="0300-1234567"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    id="academyEmail"
+                                    value="info@edumanage.pk"
+                                >
+                            </div>
+
+                            <div class="form-group full">
+                                <label>Address</label>
+                                <textarea id="academyAddress">Karachi, Pakistan</textarea>
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
-                    <label>
-                        Phone Number
+                    <div class="panel academy-preview">
 
-                        <input
-                            value="+92 300 1234567"
-                        >
-                    </label>
+                        <div class="preview-logo">
+                            EM
+                        </div>
 
+                        <h3 id="previewAcademyName">
+                            EduManage Academy
+                        </h3>
 
-                    <label>
-                        Email Address
+                        <p>
+                            Academy Management System
+                        </p>
 
-                        <input
-                            value="info@brightfutureacademy.com"
-                        >
-                    </label>
+                        <div class="preview-info">
 
+                            <span id="previewPhone">
+                                ☎ 0300-1234567
+                            </span>
 
-                    <label class="full">
-                        Address
+                            <span id="previewEmail">
+                                ✉ info@edumanage.pk
+                            </span>
 
-                        <textarea>Korangi, Karachi, Pakistan</textarea>
-                    </label>
+                            <span id="previewAddress">
+                                ⌖ Karachi, Pakistan
+                            </span>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </div>
+            </section>
 
-        </section>
+        </div>
 
     </main>
 
 </div>
 
 
-<!-- ================= ADD STUDENT MODAL ================= -->
+<!-- ================= STUDENT MODAL ================= -->
 
-<div
-    class="modal-overlay"
-    id="studentModal"
->
+<div class="modal" id="studentModal">
 
-    <div class="modal">
+    <div class="modal-box">
 
         <div class="modal-header">
 
             <div>
-
                 <h3>Add New Student</h3>
-
-                <p>
-                    Enter student information below.
-                </p>
-
+                <p>Enter student information below.</p>
             </div>
 
-            <button onclick="closeModal()">
-                ×
-            </button>
+            <button class="modal-close" onclick="closeModal()">×</button>
+
+        </div>
+
+<form id="studentForm">
+
+    <div class="form-grid">
+
+        <div class="form-group full">
+            <label>Student Name *</label>
+            <input id="newName" type="text" required>
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Class *</label>
+
+            <select id="newClass" required>
+
+                <option value="">Select Class</option>
+
+                <option>Grade 8</option>
+                <option>Grade 9</option>
+                <option>Grade 10</option>
+                <option>Grade 11</option>
+                <option>Grade 12</option>
+
+            </select>
 
         </div>
 
 
-        <form id="studentForm">
+        <div class="form-group">
+
+            <label>Phone</label>
+
+            <input
+                id="newPhone"
+                type="text"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Monthly Fee *</label>
+
+            <input
+                id="newFeeAmount"
+                type="number"
+                min="0"
+                step="100"
+                value="3000"
+                placeholder="e.g. 3000"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Fee Status</label>
+
+            <select id="newFee">
+
+                <option value="Paid">
+                    Paid
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal-actions">
+
+        <button
+            type="button"
+            class="secondary-btn"
+            onclick="closeModal()"
+        >
+            Cancel
+        </button>
+
+        <button
+            type="submit"
+            class="primary-btn"
+        >
+            Add Student
+        </button>
+
+    </div>
+
+</form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TEACHER MODAL ================= -->
+
+<div class="modal" id="teacherModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Add Teacher</h3>
+                <p>Add a new teaching staff member.</p>
+            </div>
+
+            <button class="modal-close" onclick="closeTeacherModal()">×</button>
+
+        </div>
+
+
+        <form id="teacherForm">
 
             <div class="form-grid">
 
-                <label>
-                    Full Name
+                <div class="form-group full">
+                    <label>Teacher Name *</label>
+                    <input id="teacherName" required>
+                </div>
 
-                    <input
-                        id="newName"
-                        required
-                        placeholder="Student name"
-                    >
-                </label>
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <input id="teacherSubject" required>
+                </div>
 
+                <div class="form-group">
+                    <label>Experience</label>
+                    <input id="teacherExperience" placeholder="e.g. 5 Years">
+                </div>
 
-                <label>
-                    Class
+                <div class="form-group">
+                    <label>Classes</label>
+                    <input id="teacherClasses" placeholder="e.g. Grade 9–12">
+                </div>
 
-                    <select id="newClass">
-
-                        <option>Grade 9</option>
-                        <option>Grade 10</option>
-                        <option>Grade 11</option>
-                        <option>Grade 12</option>
-
-                    </select>
-
-                </label>
-
-
-                <label>
-                    Phone
-
-                    <input
-                        id="newPhone"
-                        placeholder="+92 300 0000000"
-                    >
-                </label>
-
-
-                <label>
-                    Fee Status
-
-                    <select id="newFee">
-
-                        <option>Paid</option>
-                        <option>Pending</option>
-
-                    </select>
-
-                </label>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input id="teacherEmail" type="email">
+                </div>
 
             </div>
 
@@ -1089,13 +1046,13 @@
                 <button
                     type="button"
                     class="secondary-btn"
-                    onclick="closeModal()"
+                    onclick="closeTeacherModal()"
                 >
                     Cancel
                 </button>
 
                 <button class="primary-btn">
-                    Add Student
+                    Add Teacher
                 </button>
 
             </div>
@@ -1107,10 +1064,239 @@
 </div>
 
 
-<div
-    class="toast"
-    id="toast"
-></div>
+<!-- ================= PAYMENT MODAL ================= -->
+
+<div class="modal" id="paymentModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Record Payment</h3>
+                <p>Record a student fee payment.</p>
+            </div>
+
+            <button class="modal-close" onclick="closePaymentModal()">×</button>
+
+        </div>
+
+
+        <form id="paymentForm">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+                    <label>Student *</label>
+
+                    <select id="paymentStudent" required></select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Amount *</label>
+                    <input id="paymentAmount" type="number" value="3000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Date</label>
+                    <input id="paymentDate" type="date">
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="closePaymentModal()"
+                >
+                    Cancel
+                </button>
+
+                <button class="primary-btn">
+                    Save Payment
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= RESULT MODAL ================= -->
+
+<div class="modal" id="resultModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Enter Student Marks</h3>
+                <p>Enter marks and grade will calculate automatically.</p>
+            </div>
+
+            <button class="modal-close" onclick="closeResultModal()">×</button>
+
+        </div>
+
+
+        <form id="resultForm">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+                    <label>Student *</label>
+                    <select id="resultStudent" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Mathematics</label>
+                    <input id="resultMath" type="number" min="0" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label>English</label>
+                    <input id="resultEnglish" type="number" min="0" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Science</label>
+                    <input id="resultScience" type="number" min="0" max="100" required>
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="closeResultModal()"
+                >
+                    Cancel
+                </button>
+
+                <button class="primary-btn">
+                    Save Result
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NOTICE MODAL ================= -->
+
+<div class="modal" id="noticeModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Create Notice</h3>
+                <p>Create an announcement for students and parents.</p>
+            </div>
+
+            <button class="modal-close" onclick="closeNoticeModal()">×</button>
+
+        </div>
+
+
+        <form id="noticeForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input id="noticeTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+
+                    <select id="noticeCategory">
+                        <option>General</option>
+                        <option>Exam</option>
+                        <option>Holiday</option>
+                        <option>Fee</option>
+                        <option>Important</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group full">
+                    <label>Message *</label>
+                    <textarea id="noticeMessage" required></textarea>
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="closeNoticeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button class="primary-btn">
+                    Publish Notice
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= STUDENT VIEW MODAL ================= -->
+
+<div class="modal" id="viewStudentModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Student Details</h3>
+                <p>Student profile information.</p>
+            </div>
+
+            <button class="modal-close" onclick="closeViewStudent()">×</button>
+
+        </div>
+
+        <div id="studentDetails"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast" id="toast">
+    Success
+</div>
 
 
 <script src="script.js"></script>
