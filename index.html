@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduManage - Academy Management System</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">E</div>
+
+            <div>
+                <h2>EduManage</h2>
+                <span>Academy System</span>
+            </div>
+        </div>
+
+        <div class="menu-title">MAIN MENU</div>
+
+        <nav>
+
+            <button class="nav-item active" data-page="dashboard">
+                <span>▦</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-page="students">
+                <span>♙</span>
+                Students
+            </button>
+
+            <button class="nav-item" data-page="teachers">
+                <span>♟</span>
+                Teachers
+            </button>
+
+            <button class="nav-item" data-page="attendance">
+                <span>✓</span>
+                Attendance
+            </button>
+
+            <button class="nav-item" data-page="fees">
+                <span>₨</span>
+                Fees
+            </button>
+
+            <button class="nav-item" data-page="results">
+                <span>▤</span>
+                Results
+            </button>
+
+            <button class="nav-item" data-page="notices">
+                <span>◉</span>
+                Notices
+            </button>
+
+        </nav>
+
+        <div class="menu-title">SYSTEM</div>
+
+        <nav>
+            <button class="nav-item" data-page="settings">
+                <span>⚙</span>
+                Settings
+            </button>
+        </nav>
+
+        <div class="sidebar-help">
+
+            <div class="help-icon">✦</div>
+
+            <strong>Need a custom system?</strong>
+
+            <p>
+                Upgrade this demo with your academy's requirements.
+            </p>
+
+            <button onclick="showToast('Contact request noted')">
+                Contact Developer
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="top-left">
+
+                <button class="mobile-menu" id="mobileMenu">
+                    ☰
+                </button>
+
+                <div>
+                    <h1 id="pageTitle">Dashboard</h1>
+
+                    <p id="pageSubtitle">
+                        Welcome back! Here's what's happening today.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="search">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        id="globalSearch"
+                        placeholder="Search..."
+                    >
+
+                </div>
+
+                <button
+                    class="notification"
+                    onclick="showToast('No new notifications')"
+                >
+                    🔔
+                    <i></i>
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        FA
+                    </div>
+
+                    <div>
+                        <strong>Fahad Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <div class="page active" id="dashboard">
+
+                <div class="welcome">
+
+                    <div>
+
+                        <span class="date">
+                            TUESDAY, 22 SEPTEMBER 2026
+                        </span>
+
+                        <h2>
+                            Good afternoon, Admin 👋
+                        </h2>
+
+                        <p>
+                            Manage your academy from one simple dashboard.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="openModal()"
+                    >
+                        + Add Student
+                    </button>
+
+                </div>
+
+
+                <!-- STATS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            ♙
+                        </div>
+
+                        <div>
+
+                            <span>Total Students</span>
+
+                            <strong>248</strong>
+
+                            <small class="positive">
+                                ↗ 12%
+                                <em>vs last month</em>
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            ♟
+                        </div>
+
+                        <div>
+
+                            <span>Total Teachers</span>
+
+                            <strong>18</strong>
+
+                            <small class="positive">
+                                ↗ 2 new
+                                <em>this month</em>
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <span>Today's Attendance</span>
+
+                            <strong>92.4%</strong>
+
+                            <small class="positive">
+                                ↗ 3.2%
+                                <em>vs yesterday</em>
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            ₨
+                        </div>
+
+                        <div>
+
+                            <span>Fees Collected</span>
+
+                            <strong>₨486K</strong>
+
+                            <small class="positive">
+                                ↗ 8.6%
+                                <em>this month</em>
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CHARTS -->
+
+                <div class="two-columns">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h3>Attendance Overview</h3>
+
+                                <p>
+                                    Student attendance for current week
+                                </p>
+
+                            </div>
+
+                            <select>
+                                <option>This Week</option>
+                                <option>This Month</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="chart">
+
+                            <div class="y-axis">
+
+                                <span>100%</span>
+                                <span>75%</span>
+                                <span>50%</span>
+                                <span>25%</span>
+                                <span>0%</span>
+
+                            </div>
+
+
+                            <div class="bars">
+
+                                <div class="bar-item">
+                                    <div class="bar" style="height:84%"></div>
+                                    <small>Mon</small>
+                                </div>
+
+                                <div class="bar-item">
+                                    <div class="bar" style="height:91%"></div>
+                                    <small>Tue</small>
+                                </div>
+
+                                <div class="bar-item">
+                                    <div class="bar" style="height:87%"></div>
+                                    <small>Wed</small>
+                                </div>
+
+                                <div class="bar-item">
+                                    <div class="bar" style="height:94%"></div>
+                                    <small>Thu</small>
+                                </div>
+
+                                <div class="bar-item">
+                                    <div class="bar" style="height:89%"></div>
+                                    <small>Fri</small>
+                                </div>
+
+                                <div class="bar-item">
+                                    <div class="bar" style="height:76%"></div>
+                                    <small>Sat</small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FEE SUMMARY -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h3>Fee Summary</h3>
+
+                                <p>September 2026</p>
+
+                            </div>
+
+                            <button
+                                class="link-btn"
+                                onclick="setPage('fees')"
+                            >
+                                View all →
+                            </button>
+
+                        </div>
+
+
+                        <div class="fee-circle">
+
+                            <div>
+                                <strong>78%</strong>
+                                <span>Collected</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="fee-details">
+
+                            <div>
+                                <i class="blue-dot"></i>
+                                Collected
+
+                                <b>₨486,000</b>
+                            </div>
+
+                            <div>
+                                <i class="gray-dot"></i>
+                                Pending
+
+                                <b>₨138,000</b>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECENT STUDENTS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>Recent Students</h3>
+
+                            <p>Latest admissions</p>
+
+                        </div>
+
+                        <button
+                            class="link-btn"
+                            onclick="setPage('students')"
+                        >
+                            View all →
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                            <tr>
+                                <th>Student</th>
+                                <th>Class</th>
+                                <th>Admission Date</th>
+                                <th>Fee Status</th>
+                                <th>Status</th>
+                            </tr>
+
+                            </thead>
+
+                            <tbody id="recentStudents"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= STUDENTS ================= -->
+
+            <div class="page" id="students">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Students</h2>
+                        <p>Manage all enrolled students.</p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="openModal()"
+                    >
+                        + Add Student
+                    </button>
+
+                </div>
+
+
+                <div class="toolbar">
+
+                    <div class="search wide">
+                        ⌕
+                        <input
+                            id="studentSearch"
+                            placeholder="Search student name or ID..."
+                        >
+                    </div>
+
+                    <select>
+                        <option>All Classes</option>
+                        <option>Grade 9</option>
+                        <option>Grade 10</option>
+                        <option>Grade 11</option>
+                    </select>
+
+                    <button class="secondary-btn">
+                        ⇩ Export
+                    </button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                            <tr>
+                                <th>Student</th>
+                                <th>ID</th>
+                                <th>Class</th>
+                                <th>Phone</th>
+                                <th>Fee</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                            </thead>
+
+                            <tbody id="studentsTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= TEACHERS ================= -->
+
+            <div class="page" id="teachers">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Teachers</h2>
+                        <p>Manage your teaching staff.</p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showToast('Teacher form opened')"
+                    >
+                        + Add Teacher
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="teacher-grid"
+                    id="teacherGrid"
+                ></div>
+
+            </div>
+
+
+            <!-- ================= ATTENDANCE ================= -->
+
+            <div class="page" id="attendance">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Attendance</h2>
+                        <p>
+                            Record and monitor daily attendance.
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showToast('Attendance saved successfully')"
+                    >
+                        ✓ Save Attendance
+                    </button>
+
+                </div>
+
+
+                <div class="toolbar">
+
+                    <select>
+                        <option>Grade 10 - A</option>
+                        <option>Grade 9 - A</option>
+                        <option>Grade 11 - A</option>
+                    </select>
+
+                    <input
+                        class="date-input"
+                        type="date"
+                        value="2026-09-22"
+                    >
+
+                    <span class="attendance-count">
+                        Present:
+                        <b>22</b>
+                        / 24
+                    </span>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                            <tr>
+                                <th>Student</th>
+                                <th>Roll No.</th>
+                                <th>Status</th>
+                                <th>Mark</th>
+                            </tr>
+
+                            </thead>
+
+                            <tbody id="attendanceTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= FEES ================= -->
+
+            <div class="page" id="fees">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Fee Management</h2>
+                        <p>
+                            Track payments and outstanding fees.
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showToast('Payment form opened')"
+                    >
+                        + Record Payment
+                    </button>
+
+                </div>
+
+
+                <div class="stats-grid small">
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">₨</div>
+
+                        <div>
+                            <span>Collected</span>
+                            <strong>₨486K</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">!</div>
+
+                        <div>
+                            <span>Pending</span>
+                            <strong>₨138K</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">▣</div>
+
+                        <div>
+                            <span>Invoices</span>
+                            <strong>248</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Fee Records</h3>
+                            <p>September 2026</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                            <tr>
+                                <th>Student</th>
+                                <th>Class</th>
+                                <th>Amount</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                            </thead>
+
+                            <tbody id="feesTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RESULTS ================= -->
+
+            <div class="page" id="results">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Results</h2>
+                        <p>Manage exams and student marks.</p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showToast('Result entry opened')"
+                    >
+                        + Enter Marks
+                    </button>
+
+                </div>
+
+
+                <div class="result-cards">
+
+                    <div class="result-card">
+                        <span>Current Exam</span>
+                        <strong>Monthly Assessment</strong>
+                        <small>September 2026</small>
+                    </div>
+
+                    <div class="result-card">
+                        <span>Students Appeared</span>
+                        <strong>232</strong>
+                        <small>93.5% of enrolled</small>
+                    </div>
+
+                    <div class="result-card">
+                        <span>Average Score</span>
+                        <strong>76.8%</strong>
+                        <small>Across all classes</small>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Recent Results</h3>
+                            <p>Latest published results</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                            <tr>
+                                <th>Student</th>
+                                <th>Class</th>
+                                <th>Math</th>
+                                <th>English</th>
+                                <th>Science</th>
+                                <th>Percentage</th>
+                                <th>Grade</th>
+                            </tr>
+
+                            </thead>
+
+                            <tbody id="resultsTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= NOTICES ================= -->
+
+            <div class="page" id="notices">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Notices</h2>
+                        <p>
+                            Announcements for students and parents.
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showToast('Notice editor opened')"
+                    >
+                        + Create Notice
+                    </button>
+
+                </div>
+
+
+                <div class="notice-grid">
+
+                    <article class="notice-card">
+
+                        <span class="notice-tag important">
+                            Important
+                        </span>
+
+                        <h3>Monthly Test Schedule</h3>
+
+                        <p>
+                            Monthly assessment will begin from
+                            28 September. Students should bring
+                            their stationery.
+                        </p>
+
+                        <small>
+                            Posted 2 days ago · Admin
+                        </small>
+
+                    </article>
+
+
+                    <article class="notice-card">
+
+                        <span class="notice-tag">
+                            General
+                        </span>
+
+                        <h3>Fee Submission Reminder</h3>
+
+                        <p>
+                            Please submit September fees before
+                            the 25th to avoid late charges.
+                        </p>
+
+                        <small>
+                            Posted 5 days ago · Accounts
+                        </small>
+
+                    </article>
+
+
+                    <article class="notice-card">
+
+                        <span class="notice-tag">
+                            Event
+                        </span>
+
+                        <h3>Parent Teacher Meeting</h3>
+
+                        <p>
+                            PTM is scheduled for Saturday,
+                            3 October 2026 from 10 AM to 1 PM.
+                        </p>
+
+                        <small>
+                            Posted 1 week ago · Admin
+                        </small>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= SETTINGS ================= -->
+
+            <div class="page" id="settings">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Settings</h2>
+                        <p>
+                            Configure your academy profile.
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showToast('Settings saved')"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+
+                <div class="panel settings">
+
+                    <label>
+                        Academy Name
+
+                        <input
+                            value="Bright Future Academy"
+                        >
+                    </label>
+
+
+                    <label>
+                        Phone Number
+
+                        <input
+                            value="+92 300 1234567"
+                        >
+                    </label>
+
+
+                    <label>
+                        Email Address
+
+                        <input
+                            value="info@brightfutureacademy.com"
+                        >
+                    </label>
+
+
+                    <label class="full">
+                        Address
+
+                        <textarea>Korangi, Karachi, Pakistan</textarea>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= ADD STUDENT MODAL ================= -->
+
+<div
+    class="modal-overlay"
+    id="studentModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3>Add New Student</h3>
+
+                <p>
+                    Enter student information below.
+                </p>
+
+            </div>
+
+            <button onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="studentForm">
+
+            <div class="form-grid">
+
+                <label>
+                    Full Name
+
+                    <input
+                        id="newName"
+                        required
+                        placeholder="Student name"
+                    >
+                </label>
+
+
+                <label>
+                    Class
+
+                    <select id="newClass">
+
+                        <option>Grade 9</option>
+                        <option>Grade 10</option>
+                        <option>Grade 11</option>
+                        <option>Grade 12</option>
+
+                    </select>
+
+                </label>
+
+
+                <label>
+                    Phone
+
+                    <input
+                        id="newPhone"
+                        placeholder="+92 300 0000000"
+                    >
+                </label>
+
+
+                <label>
+                    Fee Status
+
+                    <select id="newFee">
+
+                        <option>Paid</option>
+                        <option>Pending</option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button class="primary-btn">
+                    Add Student
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
